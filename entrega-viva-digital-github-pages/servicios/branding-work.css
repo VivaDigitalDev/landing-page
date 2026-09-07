@@ -1,0 +1,149 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: #f24a14;
+  background-image:
+    linear-gradient(rgba(190, 44, 12, .48) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(190, 44, 12, .48) 2px, transparent 2px);
+  background-size: 112px 112px;
+  padding-top: 76px;
+  color: #fff;
+}
+.hero h1,
+.hero .eyebrow,
+.hero .lead {
+  color: #fff;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #f092fc;
+  background-image: conic-gradient(
+    #f24a14 25%,
+    #f092fc 0 50%,
+    #f24a14 0 75%,
+    #f092fc 0
+  );
+  background-size: 40px 40px;
+  background-position: 0 0;
+}
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+.what {
+  background: var(--cream);
+  color: #4d50f5;
+}
+.what .eyebrow,
+.what .service-list,
+.what .service-list h3,
+.what .service-list span {
+  color: #4d50f5;
+}
+.what .service-list div {
+  border-color: rgba(77, 80, 245, .38);
+}
+.cta {
+  color: var(--green);
+}
+.cta h2,
+.cta p {
+  color: var(--green);
+}
+.cta .pill {
+  background: var(--green);
+  color: #fff;
+}
+.mark {
+  width: min(180px, 18vw);
+  font-size: 0;
+}
+.mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.project.has-media {
+  padding: 0;
+  overflow: hidden;
+  background: var(--cream);
+  min-height: 0;
+  grid-row: auto;
+  height: 100%;
+}
+.project.has-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: var(--ink);
+}
+.project.has-media .project-foot {
+  padding: 18px 20px;
+  background: var(--cream);
+  color: var(--ink);
+}
+.branding-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+.web-projects {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+.web-projects .project {
+  width: 100%;
+  height: 100% !important;
+}
+.web-projects .project > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain !important;
+  background: #fff;
+}
+.web-projects .project > div:last-child {
+  flex: 1;
+}
+.project-copy {
+  display: block;
+  flex: 1;
+  padding: 22px 20px 28px;
+  font-size: 15px;
+  line-height: 1.65;
+  border-top: 1px solid rgba(19, 19, 19, 0.16);
+  background: var(--cream);
+  color: var(--ink);
+}
+.project-copy h3 {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.project-copy p {
+  margin: 0 0 14px;
+}
+.project-copy p:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 800px) {
+  .hero {
+    padding-top: 66px;
+    background-size: 72px 72px;
+  }
+  .hero::before {
+    height: 32px;
+    background-size: 32px 32px;
+    background-position: 0 0;
+  }
+  .branding-grid,
+  .web-projects { grid-template-columns: 1fr; }
+}

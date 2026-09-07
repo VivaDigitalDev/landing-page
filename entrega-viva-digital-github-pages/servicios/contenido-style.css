@@ -1,0 +1,6 @@
+/* Apariencia compartida por Contenido & Redes, Fotografía y Automatización. */
+body[data-service="contenido-redes"],
+body[data-service="fotografia-producto"],
+body[data-service="automatizacion"] {
+  --accent: var(--lime);
+}

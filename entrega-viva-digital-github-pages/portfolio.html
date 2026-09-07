@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Viva Digital — Agencia de Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="vivamark" viewBox="-200 -200 400 400">
+      <g>
+        <rect transform="rotate(356)" x="-12" y="-148" width="24" height="148" rx="3"/>
+        <rect transform="rotate(37)"  x="-12" y="-142" width="24" height="142" rx="3"/>
+        <rect transform="rotate(73)"  x="-12" y="-172" width="24" height="172" rx="3"/>
+        <rect transform="rotate(121)" x="-12" y="-132" width="24" height="132" rx="3"/>
+        <rect transform="rotate(167)" x="-12" y="-142" width="24" height="142" rx="3"/>
+        <rect transform="rotate(214)" x="-12" y="-136" width="24" height="136" rx="3"/>
+        <rect transform="rotate(262)" x="-12" y="-128" width="24" height="128" rx="3"/>
+        <rect transform="rotate(315)" x="-12" y="-136" width="24" height="136" rx="3"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;500;600&display=swap');
+
+:root {
+  --negro:  #000000;
+  --blanco: #FFFFFF;
+  --lima:   #CCFF00;
+  --verde:  #00C896;
+  --rosa:   #FF5CCD;
+  --rojo:   #E83030;
+  --violeta:#6B4EFF;
+  --gris:   #F5F5F5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Barlow', sans-serif; background: #fff; color: var(--negro); overflow-x: hidden; }
+
+/* VIEWS */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ═══════════════ NAV ═══════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  background: var(--blanco);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 64px;
+  border-bottom: 2px solid var(--negro);
+}
+.nav-logo-mark {
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-links { display: flex; align-items: center; gap: 12px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 16px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 10px 24px; text-decoration: none; cursor: pointer;
+  transition: all 0.15s; border: none; background: none;
+}
+.nav-btn-outline {
+  border: 2px solid var(--negro); color: var(--negro);
+}
+.nav-btn-outline:hover { background: var(--negro); color: var(--blanco); }
+.nav-btn-solid {
+  background: var(--negro); color: var(--blanco);
+}
+.nav-btn-solid:hover { background: #333; }
+.nav-btn-solid .arrow-icon {
+  width: 22px; height: 22px; background: var(--lima);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--negro); font-style: normal; flex-shrink: 0;
+}
+
+/* ═══════════════ MARQUEE ═══════════════ */
+.marquee-wrap { overflow: hidden; white-space: nowrap; padding: 14px 0; }
+.marquee-verde { background: var(--verde); }
+.marquee-negro { background: var(--negro); }
+.marquee-lima  { background: var(--lima); }
+.marquee-inner {
+  display: inline-block;
+  animation: ticker 16s linear infinite;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 15px; letter-spacing: 4px; text-transform: uppercase;
+}
+.marquee-verde .marquee-inner { color: var(--rosa); }
+.marquee-negro .marquee-inner { color: var(--lima); }
+.marquee-lima  .marquee-inner { color: var(--negro); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ═══════════════ HERO LANDING ═══════════════ */
+.hero-landing {
+  background: var(--lima);
+  min-height: 100vh; padding-top: 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-left: 60px; padding-right: 60px;
+  position: relative; overflow: hidden;
+}
+.hero-landing-headline {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(52px, 9vw, 120px); text-transform: uppercase;
+  color: var(--negro); line-height: 0.93; letter-spacing: -1px;
+  max-width: 900px; padding: 80px 0;
+}
+.hero-landing-mark {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+  opacity: 0.12;
+}
+
+/* ═══════════════ SERVICES SECTION ═══════════════ */
+.servicios-sec { background: var(--blanco); padding: 80px 60px; }
+.servicios-titulo {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(36px, 5vw, 64px); text-transform: uppercase;
+  line-height: 1; margin-bottom: 48px; max-width: 700px;
+}
+.servicios-cards {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+}
+.serv-card-v2 { display: flex; flex-direction: column; }
+.serv-card-v2 .serv-img {
+  width: 100%; aspect-ratio: 1;
+  background: var(--gris); overflow: hidden; margin-bottom: 16px;
+  position: relative;
+}
+.serv-card-v2 .serv-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.serv-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px;
+}
+.serv-card-v2 h3 {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 20px; text-transform: uppercase; margin-bottom: 10px; line-height: 1.1;
+}
+.serv-card-v2 p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; flex: 1; }
+.serv-link {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--negro); text-decoration: underline; align-self: flex-start;
+}
+
+/* ═══════════════ EQUIPO SECTION ═══════════════ */
+.equipo-sec { background: var(--negro); padding: 80px 60px; }
+.equipo-sec-titulo {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(40px, 5vw, 72px); text-transform: uppercase;
+  color: var(--blanco); line-height: 0.95; margin-bottom: 12px;
+}
+.equipo-sec-sub { font-size: 16px; color: rgba(255,255,255,0.45); margin-bottom: 48px; max-width: 500px; line-height: 1.5; }
+.equipo-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
+.eq-card {
+  background: #0d0d0d; padding: 36px 32px;
+  cursor: pointer; transition: background 0.2s;
+  position: relative; border-top: 3px solid transparent;
+}
+.eq-card.clickable:hover { background: #181818; border-top-color: var(--lima); }
+.eq-card.disabled { cursor: default; opacity: 0.5; }
+.eq-avatar {
+  width: 64px; height: 64px;
+  background: #1a1a1a; border: 2px solid rgba(255,255,255,0.1);
+  margin-bottom: 20px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 22px; color: var(--lima);
+}
+.eq-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.eq-nombre {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 26px; text-transform: uppercase; color: var(--blanco); margin-bottom: 4px;
+}
+.eq-rol { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--verde); font-weight: 600; margin-bottom: 14px; }
+.eq-bio { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 20px; }
+.eq-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--lima);
+}
+.eq-cta .arr { transition: transform 0.2s; }
+.eq-card.clickable:hover .arr { transform: translateX(4px); }
+
+/* ═══════════════ CONTACT FORM ═══════════════ */
+.contacto-sec { background: var(--blanco); padding: 80px 60px; }
+.contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contacto-left-titulo {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(40px, 5vw, 72px); text-transform: uppercase;
+  line-height: 0.95; margin-bottom: 16px;
+}
+.contacto-left-sub { font-size: 15px; color: #666; line-height: 1.6; }
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block; font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; color: #888;
+  margin-bottom: 6px;
+}
+.form-input, .form-textarea {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid #ddd; background: #fafafa;
+  font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--negro);
+  outline: none; transition: border-color 0.15s;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--negro); background: #fff; }
+.form-textarea { min-height: 100px; resize: vertical; }
+.checkboxes-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.check-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: #f5f5f5;
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: border-color 0.15s;
+  font-size: 14px; font-weight: 500;
+}
+.check-item:hover { border-color: #ccc; }
+.check-item input[type=checkbox] { accent-color: var(--negro); width: 16px; height: 16px; }
+.radio-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.radio-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: #f5f5f5;
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: border-color 0.15s; font-size: 14px; font-weight: 500;
+}
+.radio-item:hover { border-color: #ccc; }
+.radio-item input[type=radio] { accent-color: var(--negro); width: 16px; height: 16px; }
+.btn-submit {
+  width: 100%; padding: 16px;
+  background: var(--lima); color: var(--negro);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 18px; letter-spacing: 2px; text-transform: uppercase;
+  border: none; cursor: pointer; margin-top: 20px;
+  transition: background 0.15s;
+}
+.btn-submit:hover { background: #b8e600; }
+.form-disclaimer { font-size: 11px; color: #aaa; text-align: center; margin-top: 8px; }
+
+/* ═══════════════ FOOTER ═══════════════ */
+.footer-landing {
+  background: var(--rojo); padding: 48px 60px 40px;
+  position: relative; overflow: hidden;
+}
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 4px; position: relative; z-index: 1;
+}
+.footer-tagline {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); line-height: 1.8;
+}
+.footer-contacto {
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  text-align: right; line-height: 1.8; letter-spacing: 1px;
+}
+.footer-brand {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(60px, 12vw, 160px); text-transform: uppercase;
+  color: var(--rosa); line-height: 0.85; letter-spacing: -2px;
+  position: relative; z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════
+   PORTFOLIO — VICTORIA FERRINI
+═══════════════════════════════════════════════ */
+
+/* NAV PORTFOLIO */
+.nav-pf { background: var(--negro); border-bottom: 2px solid var(--lima); }
+.nav-pf .nav-btn-outline { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+.nav-pf .nav-btn-outline:hover { background: rgba(255,255,255,0.1); color: var(--lima); border-color: var(--lima); }
+.nav-pf .nav-btn-solid { background: var(--lima); color: var(--negro); }
+.nav-pf .nav-btn-solid:hover { background: #b8e600; }
+
+/* HERO PORTFOLIO */
+.pf-hero {
+  background: var(--negro); min-height: 100vh; padding-top: 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 60px 60px; position: relative; overflow: hidden;
+}
+.pf-hero-bg-text {
+  position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 28vw; color: rgba(204,255,0,0.04); line-height: 0.85;
+  user-select: none; pointer-events: none; letter-spacing: -10px;
+  white-space: nowrap;
+}
+.pf-hero-inner { display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; position: relative; z-index: 1; max-width: 1200px; }
+.pf-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--verde); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.pf-eyebrow::before { content:''; display:block; width:28px; height:2px; background:var(--verde); }
+.pf-nombre {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(60px, 9vw, 110px); text-transform: uppercase;
+  color: var(--blanco); line-height: 0.88; letter-spacing: -2px; margin-bottom: 32px;
+}
+.pf-nombre .lima { color: var(--lima); }
+.pf-desc { font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 520px; margin-bottom: 36px; }
+.pf-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.pf-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px;
+}
+.pf-tag.t-lima { background: var(--lima); color: var(--negro); }
+.pf-tag.t-verde { background: var(--verde); color: var(--negro); }
+.pf-tag.t-rosa { background: var(--rosa); color: var(--negro); }
+.pf-tag.t-out { border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.55); }
+.pf-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.pf-btn-lima { background: var(--lima); color: var(--negro); font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:16px; letter-spacing:2px; text-transform:uppercase; padding:14px 32px; text-decoration:none; transition:background .15s; }
+.pf-btn-lima:hover { background: #b8e600; }
+.pf-btn-out { border: 2px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; letter-spacing:2px; text-transform:uppercase; padding:14px 32px; text-decoration:none; transition:all .15s; }
+.pf-btn-out:hover { border-color:var(--lima); color:var(--lima); }
+
+.pf-foto-wrap {
+  aspect-ratio: 3/4; background: #111; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08); position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.pf-foto-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+.pf-foto-ph {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:12px; letter-spacing:3px; text-transform:uppercase;
+  color:rgba(255,255,255,0.15); text-align:center; padding:20px;
+}
+.pf-stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  position: relative; z-index: 1; margin-top: auto;
+}
+.pf-stat-box { background: #0d0d0d; padding: 28px 24px; text-align: center; }
+.pf-stat-n {
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:48px; color:var(--lima); line-height:1;
+}
+.pf-stat-l { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-top:4px; }
+
+/* TRAYECTORIA */
+.pf-tray { background: var(--blanco); padding: 80px 60px; }
+.pf-tray-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.pf-sec-lbl {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:11px; letter-spacing:5px; text-transform:uppercase; color:var(--verde); margin-bottom:14px;
+}
+.pf-sec-h {
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(32px,4vw,52px); text-transform:uppercase; line-height:0.95; margin-bottom:40px;
+}
+.tl { position:relative; }
+.tl::before { content:''; position:absolute; left:0; top:14px; bottom:0; width:2px; background:#eee; }
+.tl-item { padding-left:28px; padding-bottom:36px; position:relative; }
+.tl-item::before {
+  content:''; position:absolute; left:-6px; top:14px;
+  width:14px; height:14px; background:var(--blanco); border:3px solid var(--lima);
+}
+.tl-fecha { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--verde); margin-bottom:4px; }
+.tl-rol { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:22px; text-transform:uppercase; line-height:1; margin-bottom:2px; }
+.tl-emp { font-size:13px; color:#888; font-weight:600; letter-spacing:1px; margin-bottom:8px; }
+.tl-det { font-size:14px; color:#555; line-height:1.6; }
+.skills-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:20px; text-transform:uppercase; margin-bottom:14px; }
+.skills-wrap { display:flex; flex-wrap:wrap; gap:8px; }
+.sk-tag { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; padding:8px 16px; background:var(--negro); color:var(--lima); }
+
+/* TRABAJOS PORTFOLIO */
+.pf-trabajos { background: var(--gris); padding: 80px 60px; }
+.pf-trabajos-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(40px,6vw,80px); text-transform:uppercase; line-height:0.93; margin-bottom:48px; }
+.pf-mosaic { display:grid; grid-template-columns:repeat(12,1fr); gap:4px; }
+.pf-tile { position:relative; overflow:hidden; cursor:pointer; transition:transform .2s; }
+.pf-tile:hover { transform:scale(0.99); }
+.pf-tile.lg  { grid-column:span 8; min-height:460px; }
+.pf-tile.sm  { grid-column:span 4; min-height:460px; }
+.pf-tile.md  { grid-column:span 6; min-height:300px; }
+.pf-tile-inner { position:absolute; inset:0; }
+.pf-tile-inner img { width:100%; height:100%; object-fit:cover; display:block; }
+.pf-tile-ov {
+  position:absolute; inset:0; padding:28px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,transparent 55%);
+}
+.pf-tile-tag { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--lima); margin-bottom:6px; }
+.pf-tile-n { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:30px; text-transform:uppercase; color:var(--blanco); line-height:1.05; }
+.pf-tile-d { font-size:13px; color:rgba(255,255,255,0.6); margin-top:6px; line-height:1.5; }
+
+/* CV */
+.pf-cv {
+  background:var(--negro); padding:80px 60px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:40px;
+}
+.pf-cv-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(40px,5vw,72px); text-transform:uppercase; color:var(--blanco); line-height:0.93; margin-bottom:12px; }
+.pf-cv-h span { color:var(--lima); }
+.pf-cv-sub { font-size:15px; color:rgba(255,255,255,0.35); max-width:400px; line-height:1.6; }
+.btn-cv { background:var(--lima); color:var(--negro); font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:20px; letter-spacing:2px; text-transform:uppercase; padding:20px 48px; text-decoration:none; transition:background .15s; }
+.btn-cv:hover { background:#b8e600; }
+
+/* CONTACTO PORTFOLIO */
+.pf-contacto { background:var(--lima); padding:100px 60px; text-align:center; }
+.pf-ct-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(52px,8vw,100px); text-transform:uppercase; color:var(--negro); line-height:0.9; margin-bottom:24px; }
+.pf-ct-sub { font-size:18px; color:rgba(0,0,0,0.5); max-width:480px; margin:0 auto 44px; line-height:1.6; }
+.pf-ct-btns { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+.pf-ct-btn-negro { background:var(--negro); color:var(--blanco); font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:16px; letter-spacing:2px; text-transform:uppercase; padding:16px 36px; text-decoration:none; transition:background .15s; }
+.pf-ct-btn-negro:hover { background:#222; }
+.pf-ct-btn-out { border:2px solid var(--negro); color:var(--negro); font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:16px; letter-spacing:2px; text-transform:uppercase; padding:14px 36px; text-decoration:none; transition:all .15s; }
+.pf-ct-btn-out:hover { background:var(--negro); color:var(--blanco); }
+.pf-socials { margin-top:36px; display:flex; justify-content:center; gap:28px; }
+.pf-social { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:3px; text-transform:uppercase; color:rgba(0,0,0,0.4); text-decoration:none; transition:color .15s; }
+.pf-social:hover { color:var(--negro); }
+
+/* FOOTER PF */
+.footer-pf { background:var(--negro); padding:40px 60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid rgba(255,255,255,0.06); }
+.footer-pf p { font-size:12px; color:rgba(255,255,255,0.2); letter-spacing:1px; }
+.footer-pf a { font-size:12px; color:var(--lima); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+.footer-pf a:hover { text-decoration:underline; }
+
+/* ═══════ RESPONSIVE ═══════ */
+@media (max-width:1024px) {
+  .servicios-cards { grid-template-columns:repeat(3,1fr); }
+  .pf-hero-inner { grid-template-columns:1fr; }
+  .pf-foto-wrap { display:none; }
+  .pf-tray-grid { grid-template-columns:1fr; }
+  .contacto-grid { grid-template-columns:1fr; }
+}
+@media (max-width:768px) {
+  .nav { padding:0 20px; }
+  .hero-landing, .servicios-sec, .equipo-sec, .contacto-sec,
+  .pf-hero, .pf-tray, .pf-trabajos, .pf-cv, .pf-contacto { padding-left:24px; padding-right:24px; }
+  .footer-landing { padding:40px 24px; }
+  .servicios-cards { grid-template-columns:1fr 1fr; }
+  .pf-tile.lg,.pf-tile.sm,.pf-tile.md { grid-column:span 12; min-height:260px; }
+  .pf-stats { grid-template-columns:1fr 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LANDING — VIVA DIGITAL
+═══════════════════════════════════════════ -->
+<div id="view-landing" class="view active">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div style="width:80px"></div>
+    <div class="nav-logo-mark">
+      <svg width="44" height="44" fill="var(--violeta)"><use href="#vivamark"/></svg>
+    </div>
+    <div class="nav-links">
+      <a href="#servicios-sec" class="nav-btn nav-btn-outline">Servicios</a>
+      <a href="#contacto-sec" class="nav-btn nav-btn-solid">
+        <span class="arrow-icon">↗</span> Hablemos!
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO LIMA -->
+  <section class="hero-landing">
+    <div class="hero-landing-mark" aria-hidden="true">
+      <svg width="420" height="420" fill="rgba(0,0,0,0.08)"><use href="#vivamark"/></svg>
+    </div>
+    <h1 class="hero-landing-headline">
+      Creamos<br>tu marca.<br>Mostramos<br>tus productos.<br>Hacemos que<br>se vendan.
+    </h1>
+  </section>
+
+  <!-- MARQUEE LET'S TALK -->
+  <div class="marquee-wrap marquee-verde">
+    <div class="marquee-inner">
+      ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; &nbsp;&nbsp;
+      ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; ✦ LET'S TALK &nbsp; &nbsp;&nbsp;
+    </div>
+  </div>
+
+  <!-- CTA FLOTANTE HABLEMOS -->
+  <div style="background:var(--blanco); padding:24px 60px; display:flex; justify-content:flex-end; border-bottom:2px solid #eee;">
+    <a href="#contacto-sec" class="nav-btn nav-btn-solid" style="font-size:16px;">
+      <span class="arrow-icon">↗</span> Hablemos!
+    </a>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section class="servicios-sec" id="servicios-sec">
+    <h2 class="servicios-titulo">TODO LO QUE NECESITA TU MARCA PARA SER EXITOSA</h2>
+    <div class="servicios-cards">
+
+      <div class="serv-card-v2">
+        <div class="serv-img">
+          <!-- <img src="img-diseno.jpg" alt="Diseño de Marca"> -->
+          <div class="serv-img-placeholder" style="background:#ffe5f5;">🎨</div>
+        </div>
+        <h3>Diseño de Marca</h3>
+        <p>Definimos tu ADN visual y verbal para que dejes de competir y empieces a liderar. Tu marca, inolvidable.</p>
+        <span class="serv-link">Ver trabajos →</span>
+      </div>
+
+      <div class="serv-card-v2">
+        <div class="serv-img">
+          <!-- <img src="img-foto.jpg" alt="Fotoproducto"> -->
+          <div class="serv-img-placeholder" style="background:#e5f5ff;">📷</div>
+        </div>
+        <h3>Fotoproducto</h3>
+        <p>El amor entra por los ojos (y la venta también). Producimos imágenes de alto impacto que detienen el scroll y hacen que tu producto se vea tan bien como realmente es.</p>
+        <span class="serv-link">Ver trabajos →</span>
+      </div>
+
+      <div class="serv-card-v2">
+        <div class="serv-img">
+          <!-- <img src="img-social.jpg" alt="Social Media"> -->
+          <div class="serv-img-placeholder" style="background:#f0ffe5;">📱</div>
+        </div>
+        <h3>Social Media Strategy</h3>
+        <p>Dejá de postear por cumplir. Creamos estrategias de contenido que conectan con tu audiencia y generan comunidad. Planificación, creatividad y análisis para crecer con sentido.</p>
+        <span class="serv-link">Ver trabajos →</span>
+      </div>
+
+      <div class="serv-card-v2">
+        <div class="serv-img">
+          <!-- <img src="img-web.jpg" alt="Página Web"> -->
+          <div class="serv-img-placeholder" style="background:#fff5e5;">🛒</div>
+        </div>
+        <h3>Página Web</h3>
+        <p>Tu negocio abierto 24/7. Diseñamos tiendas online y sitios web rápidos, intuitivos y optimizados para convertir visitantes en clientes. Menos clics, más ventas.</p>
+        <span class="serv-link">Ver trabajos →</span>
+      </div>
+
+      <div class="serv-card-v2">
+        <div class="serv-img">
+          <!-- <img src="img-chatbot.jpg" alt="Chatbots"> -->
+          <div class="serv-img-placeholder" style="background:#f5e5ff;">🤖</div>
+        </div>
+        <h3>Chatbots</h3>
+        <p>Configuramos bots inteligentes para atender clientes 24/7, filtrar curiosos y cerrar ventas automáticamente mientras vos descansás. La velocidad vende.</p>
+        <span class="serv-link">Ver trabajos →</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MARQUEE DISEÑO ACTITUD -->
+  <div class="marquee-wrap marquee-negro">
+    <div class="marquee-inner">
+      ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; &nbsp;&nbsp;
+      ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; ✦ DISEÑO ✦ ACTITUD ✦ RESULTADOS &nbsp; &nbsp;&nbsp;
+    </div>
+  </div>
+
+  <!-- EQUIPO -->
+  <section class="equipo-sec" id="equipo-sec">
+    <h2 class="equipo-sec-titulo">CONOCÉ<br>AL EQUIPO*</h2>
+    <p class="equipo-sec-sub">Las personas detrás de cada estrategia, diseño y resultado.</p>
+    <div class="equipo-cards">
+
+      <div class="eq-card clickable" onclick="showPortfolio('victoria')">
+        <div class="eq-avatar">
+          <!-- <img src="vicky.jpg" alt="Victoria Ferrini"> -->
+          VF
+        </div>
+        <div class="eq-nombre">Victoria Ferrini</div>
+        <div class="eq-rol">Fundadora · Marketing &amp; Estrategia</div>
+        <div class="eq-bio">PMO con experiencia en PepsiCo. Especialista en identidad de marca, social media, paid media y fotografía de producto.</div>
+        <div class="eq-cta">Ver portfolio completo <span class="arr">→</span></div>
+      </div>
+
+      <div class="eq-card disabled">
+        <div class="eq-avatar" style="border-color:rgba(0,200,150,0.2);">?</div>
+        <div class="eq-nombre">Tu nombre</div>
+        <div class="eq-rol">Rol — Especialidad</div>
+        <div class="eq-bio">Descripción del integrante. Su experiencia y lo que aporta a Viva Digital.</div>
+        <div class="eq-cta" style="color:rgba(255,255,255,0.15);">Próximamente →</div>
+      </div>
+
+      <div class="eq-card disabled">
+        <div class="eq-avatar" style="border-color:rgba(255,92,205,0.2);">?</div>
+        <div class="eq-nombre">Tu nombre</div>
+        <div class="eq-rol">Rol — Especialidad</div>
+        <div class="eq-bio">Descripción del integrante. Su experiencia y lo que aporta a Viva Digital.</div>
+        <div class="eq-cta" style="color:rgba(255,255,255,0.15);">Próximamente →</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONTACTO -->
+  <section class="contacto-sec" id="contacto-sec">
+    <div class="contacto-grid">
+      <div class="contacto-left">
+        <h2 class="contacto-left-titulo">TRABAJEMOS<br>JUNTOS</h2>
+        <p class="contacto-left-sub">Rellená el formulario para que podamos ayudarte de la mejor manera.</p>
+      </div>
+      <div>
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mail</label>
+            <input type="email" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Redes Sociales</label>
+            <input type="text" class="form-input" placeholder="@tuusuario">
+          </div>
+          <div class="form-group">
+            <label class="form-label">¿Cómo podemos ayudarte? Contanos un poco sobre tu negocio y tus objetivos</label>
+            <textarea class="form-textarea"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">¿Qué servicios te interesan?</label>
+            <div class="checkboxes-grid">
+              <label class="check-item"><input type="checkbox"> Diseño de marca</label>
+              <label class="check-item"><input type="checkbox"> Fotoproducto</label>
+              <label class="check-item"><input type="checkbox"> Social Media Strategy</label>
+              <label class="check-item"><input type="checkbox"> Página web</label>
+              <label class="check-item"><input type="checkbox"> Chatbots</label>
+              <label class="check-item"><input type="checkbox"> Otro</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">¿Contás con un rango de inversión estimado?</label>
+            <div class="radio-grid">
+              <label class="radio-item"><input type="radio" name="inversion"> USD 200</label>
+              <label class="radio-item"><input type="radio" name="inversion"> USD 500</label>
+              <label class="radio-item"><input type="radio" name="inversion"> + USD 800</label>
+            </div>
+          </div>
+          <button class="btn-submit">Enviar</button>
+          <p class="form-disclaimer">Your Canva profile name won't be shared. Never submit passwords.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-landing">
+    <div class="footer-top">
+      <div class="footer-tagline">DISEÑO. ACTITUD.<br>RESULTADOS.</div>
+      <div class="footer-contacto">INFO@VIVADIGITAL.COM.AR<br>ROSARIO, ARGENTINA</div>
+    </div>
+    <div class="footer-brand">VIVA DIGITAL</div>
+  </footer>
+
+</div><!-- /view-landing -->
+
+
+<!-- ═══════════════════════════════════════════
+     PORTFOLIO — VICTORIA FERRINI
+═══════════════════════════════════════════ -->
+<div id="view-victoria" class="view">
+
+  <!-- NAV -->
+  <nav class="nav nav-pf">
+    <div>
+      <a href="#" onclick="showLanding();return false;" class="nav-btn nav-btn-outline" style="font-size:13px;letter-spacing:2px;">
+        ← Viva Digital
+      </a>
+    </div>
+    <div class="nav-logo-mark">
+      <svg width="44" height="44" fill="var(--lima)"><use href="#vivamark"/></svg>
+    </div>
+    <div class="nav-links">
+      <a href="#pf-exp" class="nav-btn nav-btn-outline" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.15);font-size:13px;">Trayectoria</a>
+      <a href="#pf-contact" class="nav-btn nav-btn-solid">
+        <span class="arrow-icon">↗</span> Contacto
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pf-hero">
+    <div class="pf-hero-bg-text" aria-hidden="true">VF</div>
+    <div class="pf-hero-inner">
+      <div>
+        <div class="pf-eyebrow">Portfolio · Viva Digital</div>
+        <h1 class="pf-nombre">Victoria<br><span class="lima">Ferrini.</span></h1>
+        <p class="pf-desc">Especialista en marketing digital, identidad de marca y gestión de proyectos. Experiencia corporativa en PepsiCo + creatividad diaria en Viva Digital.</p>
+        <div class="pf-tags">
+          <span class="pf-tag t-lima">Marketing Digital</span>
+          <span class="pf-tag t-verde">Branding</span>
+          <span class="pf-tag t-rosa">Paid Media</span>
+          <span class="pf-tag t-out">Fotografía</span>
+          <span class="pf-tag t-out">PMO</span>
+        </div>
+        <div class="pf-btns">
+          <a href="#pf-work" class="pf-btn-lima">Ver trabajos</a>
+          <a href="#pf-contact" class="pf-btn-out">Contactarme</a>
+        </div>
+      </div>
+      <div class="pf-foto-wrap">
+        <!-- <img src="victoria-ferrini.jpg" alt="Victoria Ferrini"> -->
+        <div class="pf-foto-ph">Tu foto aquí<br><br>Reemplazá con:<br>&lt;img src="foto.jpg"&gt;</div>
+      </div>
+    </div>
+    <div class="pf-stats">
+      <div class="pf-stat-box"><div class="pf-stat-n">5+</div><div class="pf-stat-l">Años de experiencia</div></div>
+      <div class="pf-stat-box"><div class="pf-stat-n">10+</div><div class="pf-stat-l">Marcas trabajadas</div></div>
+      <div class="pf-stat-box"><div class="pf-stat-n">100%</div><div class="pf-stat-l">Compromiso</div></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap marquee-lima">
+    <div class="marquee-inner">
+      ✦ MARKETING ✦ BRANDING ✦ PAID MEDIA ✦ FOTOGRAFÍA ✦ PMO &nbsp; ✦ MARKETING ✦ BRANDING ✦ PAID MEDIA ✦ FOTOGRAFÍA ✦ PMO &nbsp; ✦ MARKETING ✦ BRANDING ✦ PAID MEDIA ✦ FOTOGRAFÍA ✦ PMO &nbsp; &nbsp;&nbsp;
+      ✦ MARKETING ✦ BRANDING ✦ PAID MEDIA ✦ FOTOGRAFÍA ✦ PMO &nbsp; ✦ MARKETING ✦ BRANDING ✦ PAID MEDIA ✦ FOTOGRAFÍA ✦ PMO &nbsp; ✦ MARKETING ✦ BRANDING ✦ PAID MEDIA ✦ FOTOGRAFÍA ✦ PMO &nbsp; &nbsp;&nbsp;
+    </div>
+  </div>
+
+  <!-- TRAYECTORIA -->
+  <section class="pf-tray" id="pf-exp">
+    <div class="pf-tray-grid">
+      <div>
+        <div class="pf-sec-lbl">Experiencia</div>
+        <h2 class="pf-sec-h">MI TRAYECTORIA<br>PROFESIONAL.</h2>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-fecha">2023 — Presente</div>
+            <div class="tl-rol">Fundadora &amp; Directora</div>
+            <div class="tl-emp">Viva Digital — Rosario, Argentina</div>
+            <div class="tl-det">Gestión integral de marketing digital. Identidad de marca, social media strategy, campañas Meta Ads, fotografía de producto y Tienda Nube.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-fecha">20XX — 20XX</div>
+            <div class="tl-rol">PMO — Marketing &amp; E-commerce</div>
+            <div class="tl-emp">PepsiCo</div>
+            <div class="tl-det">Gestión de proyectos en entorno corporativo. Coordinación de equipos multidisciplinarios, planificación estratégica y seguimiento de KPIs.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="pf-sec-lbl">Formación &amp; Skills</div>
+        <h2 class="pf-sec-h">EDUCACIÓN<br>Y HERRAMIENTAS.</h2>
+        <div class="tl" style="margin-bottom:40px;">
+          <div class="tl-item">
+            <div class="tl-fecha">20XX — 20XX</div>
+            <div class="tl-rol">Nombre de la carrera</div>
+            <div class="tl-emp">Institución educativa</div>
+            <div class="tl-det">Descripción o especialización.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-fecha">20XX</div>
+            <div class="tl-rol">Certificaciones</div>
+            <div class="tl-emp">Meta Blueprint · Google Ads · Otros</div>
+            <div class="tl-det">Cursos y certificaciones en marketing digital.</div>
+          </div>
+        </div>
+        <div class="skills-h">Habilidades</div>
+        <div class="skills-wrap">
+          <span class="sk-tag">Meta Ads</span>
+          <span class="sk-tag">Community Mgmt</span>
+          <span class="sk-tag">Branding</span>
+          <span class="sk-tag">Fotografía</span>
+          <span class="sk-tag">Canva</span>
+          <span class="sk-tag">Adobe Suite</span>
+          <span class="sk-tag">Tienda Nube</span>
+          <span class="sk-tag">Google Analytics</span>
+          <span class="sk-tag">PMO</span>
+          <span class="sk-tag">Copywriting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABAJOS -->
+  <section class="pf-trabajos" id="pf-work">
+    <div class="pf-sec-lbl">Proyectos</div>
+    <h2 class="pf-trabajos-h">TRABAJOS<br>DESTACADOS.</h2>
+    <div class="pf-mosaic">
+
+      <div class="pf-tile lg">
+        <div class="pf-tile-inner" style="background:linear-gradient(135deg,#1a1a1a,#3a2510);">
+          <div style="position:absolute;inset:0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:120px;color:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;overflow:hidden;">LOLA</div>
+        </div>
+        <!-- <img src="lola-pets.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"> -->
+        <div class="pf-tile-ov">
+          <div class="pf-tile-tag">Branding · Social Media · Paid Media · Fotografía</div>
+          <div class="pf-tile-n">Lola Pets</div>
+          <div class="pf-tile-d">Identidad visual completa, gestión de redes, Meta Ads y fotografía de producto.</div>
+        </div>
+      </div>
+
+      <div class="pf-tile sm">
+        <div class="pf-tile-inner" style="background:linear-gradient(135deg,#CCFF00,#88CC00);">
+          <div style="position:absolute;inset:0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:100px;color:rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;">BRAND</div>
+        </div>
+        <div class="pf-tile-ov">
+          <div class="pf-tile-tag">Identidad de Marca</div>
+          <div class="pf-tile-n">Proyecto 2</div>
+          <div class="pf-tile-d">Agregá descripción y foto.</div>
+        </div>
+      </div>
+
+      <div class="pf-tile md">
+        <div class="pf-tile-inner" style="background:linear-gradient(135deg,#FF5CCD,#AA1188);">
+          <div style="position:absolute;inset:0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:100px;color:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;">FOTO</div>
+        </div>
+        <div class="pf-tile-ov">
+          <div class="pf-tile-tag">Fotografía de Producto</div>
+          <div class="pf-tile-n">Proyecto 3</div>
+          <div class="pf-tile-d">Agregá descripción y foto.</div>
+        </div>
+      </div>
+
+      <div class="pf-tile md">
+        <div class="pf-tile-inner" style="background:linear-gradient(135deg,#00C896,#004433);">
+          <div style="position:absolute;inset:0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:100px;color:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;">ADS</div>
+        </div>
+        <div class="pf-tile-ov">
+          <div class="pf-tile-tag">Paid Media</div>
+          <div class="pf-tile-n">Proyecto 4</div>
+          <div class="pf-tile-d">Agregá descripción y resultados.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section class="pf-cv">
+    <div>
+      <h2 class="pf-cv-h">DESCARGÁ<br>MI <span>CV.*</span></h2>
+      <p class="pf-cv-sub">Todo mi recorrido profesional, formación y proyectos en un documento.</p>
+    </div>
+    <a href="#" class="btn-cv">Descargar CV →</a>
+  </section>
+
+  <!-- CONTACTO LIMA -->
+  <section class="pf-contacto" id="pf-contact">
+    <h2 class="pf-ct-h">¿TRABAJAMOS<br>JUNTOS?</h2>
+    <p class="pf-ct-sub">Disponible para proyectos freelance, posiciones full-time y colaboraciones creativas.</p>
+    <div class="pf-ct-btns">
+      <a href="mailto:vickyferrini@gmail.com" class="pf-ct-btn-negro">vickyferrini@gmail.com</a>
+      <a href="https://wa.me/TU_NUMERO" target="_blank" class="pf-ct-btn-out">WhatsApp</a>
+    </div>
+    <div class="pf-socials">
+      <a href="#" class="pf-social">Instagram</a>
+      <a href="#" class="pf-social">LinkedIn</a>
+      <a href="#" class="pf-social">Behance</a>
+    </div>
+  </section>
+
+  <!-- FOOTER PF -->
+  <footer class="footer-pf">
+    <p>© 2026 Victoria Ferrini — Viva Digital.</p>
+    <a href="#" onclick="showLanding();return false;">← Volver a Viva Digital</a>
+  </footer>
+
+</div><!-- /view-victoria -->
+
+<script>
+function showPortfolio(person) {
+  document.getElementById('view-landing').classList.remove('active');
+  document.getElementById('view-' + person).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+function showLanding() {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-landing').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+document.addEventListener('click', function(e) {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (href === '#') return;
+  const target = document.querySelector(href);
+  if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+});
+</script>
+</body>
+</html>

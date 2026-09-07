@@ -1,0 +1,71 @@
+html.motion-ready .motion-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity .7s cubic-bezier(.2,.7,.2,1),
+    transform .7s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+html.motion-ready .motion-reveal.from-left {
+  transform: translateX(-34px);
+}
+html.motion-ready .motion-reveal.from-right {
+  transform: translateX(34px) rotate(-8deg);
+}
+html.motion-ready .motion-reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0);
+}
+.service-list .motion-reveal:nth-child(2),
+.portfolioGrid .motion-reveal:nth-child(2),
+.grid .motion-reveal:nth-child(2) {
+  transition-delay: .1s;
+}
+.service-list .motion-reveal:nth-child(3),
+.portfolioGrid .motion-reveal:nth-child(3),
+.grid .motion-reveal:nth-child(3) {
+  transition-delay: .2s;
+}
+.service-list .motion-reveal:nth-child(4) {
+  transition-delay: .3s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready .motion-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero h1,
+  .service-list h3,
+  .work h2,
+  .project-foot span,
+  .cta h2 {
+    transition: transform .28s cubic-bezier(.2,.7,.2,1);
+    transform-origin: left center;
+  }
+
+  .hero h1:hover,
+  .service-list h3:hover,
+  .work h2:hover,
+  .project-foot span:hover,
+  .cta h2:hover {
+    transform: scale(1.025);
+  }
+
+  .cta h2 {
+    transform-origin: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1,
+  .service-list h3,
+  .work h2,
+  .project-foot span,
+  .cta h2 {
+    transition: none;
+  }
+}
