@@ -28,13 +28,13 @@ export const servicios = {
       key: 'branding',
       name: 'Estrategia y branding',
       line: 'Posicionamiento, logo y sistema visual para tu marca.',
-      img: { src: '/img/p3000-2.jpg', alt: 'Logo de Fundación P3000 impreso sobre papel' },
+      img: { src: '/img/servicio-branding.webp', alt: 'Manos ordenando impresos y muestras de color rosa y bordó junto a una carpeta verde con el logo de VIVA', pos: '50% 72%' },
     },
     {
       key: 'contenido',
       name: 'Contenido y redes',
       line: 'Planificamos, diseñamos y publicamos tus redes cada mes.',
-      img: { src: '/img/rrss-galleta.jpg', alt: 'Pieza para redes de Viva: una galleta de la fortuna sobre fondo naranja cuadriculado' },
+      img: { src: '/img/servicio-contenido.webp', alt: 'Una persona fotografía con el celular una pared con afiches de VIVA', pos: '55% 40%' },
       sticker: '/img/sticker-video.webp',
     },
     {
@@ -47,7 +47,7 @@ export const servicios = {
       key: 'web',
       name: 'Web y ecommerce',
       line: 'Landings, sitios y tiendas online pensados para vender.',
-      img: { src: '/img/egip-recetas.jpg', alt: 'Sección de recetas del sitio web de La Egipciana' },
+      img: { src: '/img/servicio-web.webp', alt: 'Una persona diseña un sitio web en la notebook', pos: '50% 40%' },
       sticker: '/img/sticker-globo.webp',
     },
     {

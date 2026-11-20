@@ -31,7 +31,8 @@ export default function Servicios() {
                 </Fragment>
               ) : (
                 <Fragment key={s.key}>
-                  <img className="frame__img" data-peek-for={s.key} src={s.img.src} alt={s.img.alt} hidden={i > 0} />
+                  <img className="frame__img" data-peek-for={s.key} src={s.img.src} alt={s.img.alt} hidden={i > 0}
+                    style={s.img.pos ? { objectPosition: s.img.pos } : undefined} />
                   {s.sticker && <img className="peek-sticker" src={s.sticker} alt="" aria-hidden="true" width="640" height="560" />}
                 </Fragment>
               ),
