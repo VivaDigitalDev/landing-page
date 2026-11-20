@@ -55,19 +55,6 @@
 /* el logo sticker grande en el footer bordó */
 .footer .footer__logo img.logo { height: clamp(56px, 6vw, 96px); }
 
-/* la caja del hero en bordó (solo desde 1024px: debajo, el texto va sobre el fondo crema) */
-@media (min-width: 1024px) {
-  /* rojo de marca, texto crema y el botón en lima, como la pieza "Build a strong digital presence" */
-  .hero--photo:not([data-box="none"]) .hero__text.hero__text--brand {
-    background: var(--viva-red); color: #fff7f0;
-    --ink: #fff7f0; --muted: #fbe3e5;
-    --line: rgb(255 247 240 / .18); --line-strong: rgb(255 247 240 / .34);
-    --action: var(--viva-lime); --action-ink: #5e0a2b;
-    --surface: rgb(255 247 240 / .16);
-  }
-  .hero__text--brand .serif { color: var(--viva-lime); }
-  .hero--photo .hero__text--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); }
-}
 
 /* la frase de "Por qué Viva": más grande y con un sticker abajo a la derecha */
 #manifiesto .wrap { position: relative; height: 100%; }
@@ -91,12 +78,6 @@ h1 .serif, h2 .serif { font-size: 1.08em; line-height: 0; }
 #servicios h2 .serif, #close-h .serif { color: var(--viva-red); }
 .footer--dark #close-h .serif { color: var(--viva-lime); }
 
-/* sticker "Your brand but forreal" sobre la foto del hero (desde 1024px) */
-.hero__sticker { display: none; }
-@media (min-width: 1024px) {
-  .hero__sticker { display: block; position: absolute; z-index: 1; right: max(var(--gut), 50% - 640px); bottom: 64px;
-    width: clamp(300px, 26vw, 400px); height: auto; transform: rotate(-6deg); pointer-events: none; }
-}
 
 /* "Por qué Viva" en el índigo de las piezas de redes, con "venda más" en lima */
 .ground-indigo { --bg: var(--viva-indigo); --ink: #fffaf2; --muted: #d9daff; --accent: var(--viva-lime); background: var(--viva-indigo); color: var(--ink); }
@@ -115,13 +96,6 @@ h1 .serif, h2 .serif { font-size: 1.08em; line-height: 0; }
 .footer .socials a { display: inline-grid; place-items: center; width: 44px; height: 44px; color: var(--ink); }
 .footer .socials a:hover { color: var(--viva-lime); }
 
-/* celular y tablet: el texto del hero va sobre una banda roja bajo la foto (antes quedaba crema y perdía la marca) */
-@media (max-width: 1023px) {
-  .hero--photo:has(.hero__text--brand) { background: var(--viva-red); }
-  .hero--photo .hero__text.hero__text--brand, .hero--photo .hero__text.hero__text--brand :is(h1, .hero__lead) { color: #fff7f0; --ink: #fff7f0; --muted: #fbe3e5; }
-  .hero--photo .hero__text--brand .serif { color: var(--viva-lime); }
-  .hero--photo .hero__text--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); }
-}
 
 /* el título de tres frases: una por línea. Desde 1280px la caja roja ocupa 7 de 12 columnas
    para que cada frase entre en una sola línea */
@@ -129,5 +103,19 @@ h1 .serif, h2 .serif { font-size: 1.08em; line-height: 0; }
 .hero .hero__title { max-width: none; text-wrap: wrap; }
 .hero .hero__title > span { display: block; }
 @media (min-width: 1280px) { .hero .hero__title > span { white-space: nowrap; } }
-@media (min-width: 1280px) { .hero--photo .hero__text.hero__text--brand { width: min(760px, 59%); } }
 @media (max-width: 639px) { .hero .hero__title { font-size: clamp(26px, 6.8vw, 30px); } }
+
+/* hero sobre el rojo de la marca: texto crema, palabras en serif lima, botón lima */
+.hero--brand { background: var(--viva-red); color: #fff7f0;
+  --ink: #fff7f0; --muted: #fbe3e5; --bg: var(--viva-red);
+  --line: rgb(255 247 240 / .18); --line-strong: rgb(255 247 240 / .4);
+  --action: var(--viva-lime); --action-ink: #5e0a2b; --surface: rgb(255 247 240 / .16); }
+.hero--brand :is(h1, .hero__lead) { color: #fff7f0; }
+.hero--brand .serif { color: var(--viva-lime); }
+.hero--brand .hero__media { background: #e9a7d9; }
+.hero--brand .hero__media img:not(.hero__sticker) { object-position: var(--ly-pos, 62% 50%); }
+.hero--brand .hero__media > .hero__sticker { position: absolute; z-index: 2; inset: auto auto 16px 16px; left: 16px; bottom: 16px; top: auto; right: auto; object-fit: contain; width: clamp(180px, 16vw, 260px); height: auto; transform: rotate(-6deg); pointer-events: none; }
+@media (max-width: 639px) { .hero--brand .hero__media > .hero__sticker { width: 150px; left: 10px; bottom: 10px; } }
+@media (min-width: 1024px) { .hero--brand .hero__text { align-self: center; } }
+/* celulares de 320 a 359px: la foto más baja para que el hero entre en una pantalla */
+@media (max-width: 359px) { .hero--split .hero__media { min-height: 120px; } .hero--brand .hero__media > .hero__sticker { width: 110px; } .hero .hero__lead { font-size: 16px; } }

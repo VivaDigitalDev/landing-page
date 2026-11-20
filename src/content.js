@@ -17,7 +17,7 @@ export const hero = {
   sticker: { src: '/img/sticker-forreal.webp', w: 640, h: 220 },
   lead:
     'Agencia de marketing para pymes en Rosario: estrategia, contenido, fotos, web y automatización. Proyectos desde USD 500.',
-  photo: { src: '/img/equipo.jpg', alt: 'Tres personas del equipo de Viva revisan un proyecto en una notebook, sentadas en un sillón' },
+  photo: { src: '/img/portada.jpg', webp: '/img/portada.webp', alt: 'El equipo de Viva revisa un proyecto en una notebook, en el estudio con moodboards de la marca en la pared rosa' },
 }
 
 export const servicios = {
