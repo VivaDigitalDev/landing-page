@@ -57,27 +57,68 @@
 
 /* la caja del hero en bordó (solo desde 1024px: debajo, el texto va sobre el fondo crema) */
 @media (min-width: 1024px) {
+  /* rojo de marca, texto crema y el botón en lima, como la pieza "Build a strong digital presence" */
   .hero--photo:not([data-box="none"]) .hero__text.hero__text--brand {
-    background: var(--p-inv-bg); color: var(--p-inv-ink);
-    --ink: var(--p-inv-ink); --muted: var(--p-inv-muted);
-    --line: color-mix(in oklab, var(--p-inv-ink) 14%, transparent); --line-strong: color-mix(in oklab, var(--p-inv-ink) 28%, transparent);
-    --action: var(--p-inv-action); --action-ink: var(--p-inv-action-ink);
-    --surface: var(--p-inv-surface);
+    background: var(--viva-red); color: #fff7f0;
+    --ink: #fff7f0; --muted: #fbe3e5;
+    --line: rgb(255 247 240 / .18); --line-strong: rgb(255 247 240 / .34);
+    --action: var(--viva-lime); --action-ink: #5e0a2b;
+    --surface: rgb(255 247 240 / .16);
   }
+  .hero__text--brand .serif { color: var(--viva-lime); }
+  .hero--photo .hero__text--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); }
 }
 
 /* la frase de "Por qué Viva": más grande y con el asterisco del logo abajo a la derecha */
 #manifiesto .wrap { position: relative; height: 100%; }
 #manifiesto .mo-wh__text { font-size: clamp(34px, 3.4vw + 12px, 64px); line-height: 1.1; max-width: 1080px; }
-#manifiesto .manifiesto__mark { position: absolute; right: 0; bottom: 0; width: clamp(140px, 22vw, 320px); height: auto; pointer-events: none; }
-@media (max-width: 639px) { #manifiesto .manifiesto__mark { width: 120px; } }
+#manifiesto .manifiesto__mark { position: absolute; right: 0; bottom: 0; width: clamp(180px, 26vw, 380px); height: auto; pointer-events: none; transform: rotate(-5deg); }
+@media (max-width: 639px) { #manifiesto .manifiesto__mark { width: 170px; } }
 
 /* el damero rosa y naranja de las piezas de redes, como franja al pie de "Por qué Viva" */
 #manifiesto { --checker: 32px; position: relative; overflow: hidden; }
 #manifiesto::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--checker) * 2);
-  background: repeating-conic-gradient(#ee91fb 0 25%, #e8501c 0 50%) 0 0 / calc(var(--checker) * 2) calc(var(--checker) * 2);
+  background: repeating-conic-gradient(var(--checker-pink) 0 25%, var(--checker-orange) 0 50%) 0 0 / calc(var(--checker) * 2) calc(var(--checker) * 2);
   pointer-events: none;
 }
 #manifiesto .manifiesto__mark { bottom: calc(var(--checker) * 2 - var(--padb, 72px) + 24px); }
 @media (max-width: 639px) { #manifiesto { --checker: 20px; } #manifiesto::after { bottom: var(--bar, 0px); } }
+
+/* la palabra en serif itálica de cada título (Instrument Serif), como en las piezas de redes */
+.serif { font-family: var(--font-accent); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+h1 .serif, h2 .serif { font-size: 1.08em; line-height: 0; }
+#servicios h2 .serif, #close-h .serif { color: var(--viva-red); }
+.footer--dark #close-h .serif { color: var(--viva-lime); }
+
+/* sticker "Your brand but forreal" sobre la foto del hero (desde 1024px) */
+.hero__sticker { display: none; }
+@media (min-width: 1024px) {
+  .hero__sticker { display: block; position: absolute; z-index: 1; right: max(var(--gut), 50% - 640px); bottom: 64px;
+    width: clamp(300px, 26vw, 400px); height: auto; transform: rotate(-6deg); pointer-events: none; }
+}
+
+/* "Por qué Viva" en el índigo de las piezas de redes, con "venda más" en lima */
+.ground-indigo { --bg: var(--viva-indigo); --ink: #fffaf2; --muted: #d9daff; --accent: var(--viva-lime); background: var(--viva-indigo); color: var(--ink); }
+.ground-indigo .mo-wh__text strong { font-family: var(--font-accent); font-style: italic; font-weight: 400; }
+
+/* stickers sobre la imagen de cada servicio (video, globo, robot) */
+.frame.frame--photo > .peek-sticker { position: absolute; z-index: 2; left: 24px; bottom: 24px; width: clamp(96px, 11vw, 150px); height: auto; transform: rotate(-8deg); pointer-events: none; }
+.frame.frame--photo > [hidden] + .peek-sticker { display: none; }
+
+/* cierre: el sticker "Making Digital Work" a la derecha del botón grande */
+.close--type { position: relative; }
+.close__sticker { display: none; }
+@media (min-width: 1024px) {
+  .close__sticker { display: block; position: absolute; right: 0; top: 0; width: clamp(200px, 18vw, 280px); height: auto; transform: rotate(6deg); pointer-events: none; }
+}
+.footer .socials a { display: inline-grid; place-items: center; width: 44px; height: 44px; color: var(--ink); }
+.footer .socials a:hover { color: var(--viva-lime); }
+
+/* celular y tablet: el texto del hero va sobre una banda roja bajo la foto (antes quedaba crema y perdía la marca) */
+@media (max-width: 1023px) {
+  .hero--photo:has(.hero__text--brand) { background: var(--viva-red); }
+  .hero--photo .hero__text.hero__text--brand, .hero--photo .hero__text.hero__text--brand :is(h1, .hero__lead) { color: #fff7f0; --ink: #fff7f0; --muted: #fbe3e5; }
+  .hero--photo .hero__text--brand .serif { color: var(--viva-lime); }
+  .hero--photo .hero__text--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); }
+}

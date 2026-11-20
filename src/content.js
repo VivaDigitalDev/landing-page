@@ -12,14 +12,15 @@ export const nav = [
 ]
 
 export const hero = {
-  title: 'Agencia de marketing para pymes',
+  title: 'Agencia de *marketing* para pymes',
+  sticker: { src: '/img/sticker-forreal.webp', w: 640, h: 220 },
   lead:
     'Estrategia, marca, contenido, fotos, web y automatización con un solo equipo en Rosario. Proyectos desde USD 500.',
   photo: { src: '/img/equipo.jpg', alt: 'Tres personas del equipo de Viva revisan un proyecto en una notebook, sentadas en un sillón' },
 }
 
 export const servicios = {
-  title: 'Servicios para tu marca.',
+  title: 'Servicios para tu *marca*.',
   muted: 'Contratá uno o sumalos todos.',
   items: [
     {
@@ -33,6 +34,7 @@ export const servicios = {
       name: 'Contenido y redes',
       line: 'Planificamos, diseñamos y publicamos tus redes cada mes.',
       img: { src: '/img/rrss-galleta.jpg', alt: 'Pieza para redes de Viva: una galleta de la fortuna sobre fondo naranja cuadriculado' },
+      sticker: '/img/sticker-video.webp',
     },
     {
       key: 'foto',
@@ -45,11 +47,13 @@ export const servicios = {
       name: 'Web y ecommerce',
       line: 'Landings, sitios y tiendas online pensados para vender.',
       img: { src: '/img/egip-recetas.jpg', alt: 'Sección de recetas del sitio web de La Egipciana' },
+      sticker: '/img/sticker-globo.webp',
     },
     {
       key: 'automatizacion',
       name: 'Automatización',
       line: 'Chatbots de WhatsApp que responden, toman datos y cobran.',
+      sticker: '/img/sticker-robot.webp',
       diagram: {
         layout: 'hub',
         alt: 'Un chatbot de WhatsApp conectado con Google Sheets, Gmail y Google Calendar.',
@@ -71,6 +75,7 @@ export const manifiesto = {
   before: 'Somos el equipo creativo y estratégico que tu pyme necesitaba: diseño, contenido, web e inteligencia artificial juntos, para que tu marca se vea profesional, comunique claro y ',
   strong: 'venda más',
   after: '.',
+  sticker: { src: '/img/sticker-simplify.webp', w: 640, h: 417 },
 }
 
 export const trabajos = {
@@ -129,7 +134,9 @@ export const propuesta = {
 }
 
 export const cierre = {
-  title: 'Contanos qué necesita tu marca',
+  title: 'Contanos qué necesita tu *marca*',
+  sticker: { src: '/img/sticker-making.webp', w: 640, h: 536 },
   line: 'Respondemos por WhatsApp de lunes a viernes, de 9 a 18.',
   lede: 'Agencia de marketing en Rosario.',
+  instagram: 'https://www.instagram.com/vivadigital.agencia/',
 }

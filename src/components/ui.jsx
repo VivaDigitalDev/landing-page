@@ -20,6 +20,15 @@ export function MainButton({ className = '', arrow = true }) {
   )
 }
 
+// "Agencia de *marketing*": la palabra entre asteriscos va en serif itálica, como en las piezas de redes.
+export function Rich({ text }) {
+  return text.split(/(\*[^*]+\*)/).map((part, i) =>
+    part.startsWith('*') && part.endsWith('*')
+      ? <em className="serif" key={i}>{part.slice(1, -1)}</em>
+      : part,
+  )
+}
+
 export function Logo() {
   return (
     <a className="nav__logo" href="#top" aria-label="Viva Digital, volver al inicio">
