@@ -1,0 +1,83 @@
+/* CSS propio de la página: solo lo que el kit no trae (el logo, el formulario de WhatsApp,
+   el diagrama dentro de la imagen de servicios y la altura de los paneles del método). */
+
+/* el logo sticker es más ancho que alto: lo mostramos a 32px de alto en el nav */
+.nav__logo img.logo { height: 32px; width: auto; display: block; }
+.footer .nav__logo img.logo { height: 40px; }
+@media (max-width: 639px) { .nav__logo img.logo { height: 26px; } }
+
+/* el formulario va en una tarjeta sobre el fondo alternativo */
+.form--card { background: var(--p-bg); border-radius: var(--r-lg); padding: var(--s-7); grid-template-columns: minmax(0, 1fr); align-content: start; }
+@media (max-width: 639px) { .form--card { padding: var(--s-5); } }
+.form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.form legend { padding: 0; margin-bottom: var(--s-2); font-size: var(--t-small); font-weight: 500; }
+.choices { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.choice { position: relative; display: inline-flex; }
+.choice input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; clip-path: inset(50%); }
+.choice span { cursor: pointer; }
+.choice span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4); border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--ink) 18%, transparent); font-size: 15px; font-weight: 400; color: var(--ink); }
+.choice input:checked + span { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.choice input:focus-visible + span { outline: 2px solid var(--action); outline-offset: 2px; }
+
+/* el diagrama de Automatización ocupa el mismo marco que las fotos de servicios */
+.frame.frame--photo > .peek-diagram { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--s-6); background: var(--p-surface); }
+/* oculto con visibility (no display:none) para que el diagrama tenga tamaño y se dibuje al cargar */
+.frame.frame--photo > .peek-diagram[hidden] { display: grid; visibility: hidden; }
+.peek-diagram .dg { width: 100%; max-width: 520px; }
+
+/* los paneles de los cuatro pasos: una altura para toda la fila */
+#metodo .panel { --p-h: 360px; }
+@media (min-width: 1024px) and (max-width: 1279px) { #metodo .panel { --p-h: 150px; } }
+@media (min-width: 640px) and (max-width: 1023px) { #metodo { --h: 2 } #metodo .panel { --p-h: 220px; } }
+@media (max-width: 639px) { #metodo .panel { --p-h: 150px; } }
+
+/* la foto chica bajo el texto en Preguntas y en Propuesta */
+.side-photo { --ratio: 95%; margin: var(--s-4) 0 0; border-radius: var(--r-lg); overflow: hidden; }
+@media (max-width: 1279px) { .side-photo { --ratio: 62%; } }
+@media (max-width: 639px) { .side-photo { --ratio: 120%; } #preguntas .side-photo { --ratio: 165%; } }
+@media (max-width: 359px) { .side-photo, #preguntas .side-photo { --ratio: 62%; } }
+
+/* tablet: Preguntas apila la foto y la lista, así que ocupa dos pantallas */
+@media (min-width: 640px) and (max-width: 1023px) { #preguntas { --h: 2 } }
+/* pantallas de 320 a 359px: menos alto para que nada se pise */
+@media (max-width: 359px) {
+  #metodo .panel { display: none; }
+  .hero .btn--secondary { display: none; }
+}
+
+/* 640 a 1279px: el formulario necesita dos pantallas; la tarjeta nunca se sale de su columna */
+.form--card { min-width: 0; }
+.form--card :is(textarea, input) { width: 100%; max-width: 100%; }
+@media (min-width: 640px) and (max-width: 1279px) { #propuesta { --h: 2 } #propuesta .side-photo { --ratio: 75%; } }
+@media (min-width: 1024px) and (max-width: 1279px) { #preguntas .side-photo { --ratio: 52%; } }
+
+/* el logo sticker grande en el footer bordó */
+.footer .footer__logo img.logo { height: clamp(56px, 6vw, 96px); }
+
+/* la caja del hero en bordó (solo desde 1024px: debajo, el texto va sobre el fondo crema) */
+@media (min-width: 1024px) {
+  .hero--photo:not([data-box="none"]) .hero__text.hero__text--brand {
+    background: var(--p-inv-bg); color: var(--p-inv-ink);
+    --ink: var(--p-inv-ink); --muted: var(--p-inv-muted);
+    --line: color-mix(in oklab, var(--p-inv-ink) 14%, transparent); --line-strong: color-mix(in oklab, var(--p-inv-ink) 28%, transparent);
+    --action: var(--p-inv-action); --action-ink: var(--p-inv-action-ink);
+    --surface: var(--p-inv-surface);
+  }
+}
+
+/* la frase de "Por qué Viva": más grande y con el asterisco del logo abajo a la derecha */
+#manifiesto .wrap { position: relative; height: 100%; }
+#manifiesto .mo-wh__text { font-size: clamp(34px, 3.4vw + 12px, 64px); line-height: 1.1; max-width: 1080px; }
+#manifiesto .manifiesto__mark { position: absolute; right: 0; bottom: 0; width: clamp(140px, 22vw, 320px); height: auto; pointer-events: none; }
+@media (max-width: 639px) { #manifiesto .manifiesto__mark { width: 120px; } }
+
+/* el damero rosa y naranja de las piezas de redes, como franja al pie de "Por qué Viva" */
+#manifiesto { --checker: 32px; position: relative; overflow: hidden; }
+#manifiesto::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--checker) * 2);
+  background: repeating-conic-gradient(#ee91fb 0 25%, #e8501c 0 50%) 0 0 / calc(var(--checker) * 2) calc(var(--checker) * 2);
+  pointer-events: none;
+}
+#manifiesto .manifiesto__mark { bottom: calc(var(--checker) * 2 - var(--padb, 72px) + 24px); }
+@media (max-width: 639px) { #manifiesto { --checker: 20px; } #manifiesto::after { bottom: var(--bar, 0px); } }

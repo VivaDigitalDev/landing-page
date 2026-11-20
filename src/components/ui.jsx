@@ -1,0 +1,29 @@
+import { MAIN_ACTION } from '../content.js'
+
+// La flecha dibujada del botón principal (motion.css la anima en hover).
+export function Arrow() {
+  return (
+    <svg className="m-arrow" viewBox="0 0 12 12" aria-hidden="true">
+      <path className="m-arrow__stem" d="M1 6h8" />
+      <path className="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5" />
+    </svg>
+  )
+}
+
+// La acción principal: el mismo texto en el nav, el hero, el cierre y la barra del celular.
+export function MainButton({ className = '', arrow = true }) {
+  return (
+    <a className={`btn btn--primary ${className}`.trim()} href="#propuesta">
+      {MAIN_ACTION}
+      {arrow && <Arrow />}
+    </a>
+  )
+}
+
+export function Logo() {
+  return (
+    <a className="nav__logo" href="#top" aria-label="Viva Digital, volver al inicio">
+      <img className="logo" src="/logo.svg" alt="Viva" width="120" height="47" />
+    </a>
+  )
+}
