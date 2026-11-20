@@ -12,10 +12,11 @@ export const nav = [
 ]
 
 export const hero = {
-  title: 'Agencia de *marketing* para pymes',
+  // cada frase va en su propia línea (separadas por |); la palabra entre asteriscos va en serif itálica
+  title: 'Creamos tu *marca*.|Mostramos tus *productos*.|Hacemos que se *vendan*.',
   sticker: { src: '/img/sticker-forreal.webp', w: 640, h: 220 },
   lead:
-    'Estrategia, marca, contenido, fotos, web y automatización con un solo equipo en Rosario. Proyectos desde USD 500.',
+    'Agencia de marketing para pymes en Rosario: estrategia, contenido, fotos, web y automatización. Proyectos desde USD 500.',
   photo: { src: '/img/equipo.jpg', alt: 'Tres personas del equipo de Viva revisan un proyecto en una notebook, sentadas en un sillón' },
 }
 

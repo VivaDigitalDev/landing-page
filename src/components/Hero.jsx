@@ -11,7 +11,9 @@ export default function Hero() {
       <div className="wrap">
         <div className="hero-text">
           <div className="hero__text hero__text--brand">
-            <h1 id="hero-h"><Rich text={hero.title} /></h1>
+            <h1 id="hero-h" className="hero__title">
+              {hero.title.split('|').map((line) => <span key={line}><Rich text={line} /></span>)}
+            </h1>
             <p className="hero__lead">{hero.lead}</p>
             <div className="btn-row">
               <MainButton />
