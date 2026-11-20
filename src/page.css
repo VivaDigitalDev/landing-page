@@ -112,21 +112,32 @@ h1 .serif, h2 .serif { font-size: 1.08em; line-height: 0; }
   --action: var(--viva-lime); --action-ink: #5e0a2b; --surface: rgb(255 247 240 / .16); }
 .hero--brand :is(h1, .hero__lead) { color: #fff7f0; }
 .hero--brand .serif { color: var(--viva-lime); }
-.hero--brand .hero__stage > .hero__sticker { position: absolute; z-index: 2; inset: auto auto 16px 16px; left: 16px; bottom: 16px; top: auto; right: auto; object-fit: contain; width: clamp(180px, 16vw, 260px); height: auto; transform: rotate(-6deg); pointer-events: none; }
-@media (max-width: 639px) { .hero--brand .hero__stage > .hero__sticker { width: 150px; left: 10px; bottom: 10px; } }
-/* celulares de 320 a 359px: la foto más baja para que el hero entre en una pantalla */
-@media (max-width: 359px) { .hero--split .hero__media { min-height: 120px; } .hero--brand .hero__stage > .hero__sticker { width: 110px; } .hero .hero__lead { font-size: 16px; } }
 
-/* la foto de la portada: a todo el ancho y hasta el pie de la pantalla; el sticker
-   queda en la esquina inferior izquierda, sobre la línea de la grilla */
-.hero--brand .hero__stage { position: relative; background: #e9a7d9; }
-.hero--brand .hero__stage > .hero__sticker { left: max(var(--gut), 50% - 640px); bottom: 24px; }
-@media (min-width: 1280px) { .hero .hero__title > span { white-space: nowrap; } }
-/* celular: la foto de portada más baja (apaisada) para que todo el hero entre en una pantalla */
-@media (max-width: 639px) { .hero--brand.hero--product .hero__in { display: flex; flex-direction: column; height: 100%; } .hero--brand.hero--product .hero__stage { aspect-ratio: auto; flex: 1 1 auto; min-height: 200px; } }
-@media (max-width: 359px) { .hero--brand.hero--product .hero__stage { aspect-ratio: 16 / 7; } .hero--brand .hero__stage > .hero__sticker { display: none; } }
-/* la foto de portada va dentro de <picture> (webp + jpg): que llene el escenario igual que un img */
-.hero--brand .hero__stage > picture { position: absolute; inset: 0; }
-.hero--brand .hero__stage > picture > img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
-@media (max-width: 639px) { .hero--brand .hero__stage > picture > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); } }
-@media (max-width: 359px) { .hero--brand.hero--product .hero__stage { min-height: 140px; } }
+
+/* portada: la foto a pantalla completa (dentro de <picture>) */
+.hero--photo > .hero__pic { position: absolute; inset: 0; z-index: 0; }
+.hero--photo > .hero__pic > img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
+
+/* desde 1024px: la caja roja chica, abajo a la izquierda, solo con el título y los botones */
+@media (min-width: 1024px) {
+  .hero--photo.hero--brand { background: #1b1b1b; }
+  .hero--photo.hero--brand > .wrap > .hero-text { justify-content: flex-end; }
+  .hero--photo.hero--brand .hero__text { width: auto; max-width: 640px; padding: var(--s-6) var(--s-7) var(--s-7); background: var(--viva-red); color: #fff7f0;
+    --ink: #fff7f0; --muted: #fbe3e5; --line: rgb(255 247 240 / .18); --line-strong: rgb(255 247 240 / .4); }
+  .hero--photo.hero--brand .hero__text h1 { color: #fff7f0; }
+  .hero--photo.hero--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); margin-top: var(--s-6); }
+  .hero--photo.hero--brand .hero__title { font-size: clamp(34px, 1.1vw + 22px, 44px); }
+  .hero--brand > .hero__sticker { position: absolute; z-index: 1; right: max(var(--gut), 50% - 640px); bottom: 64px;
+    width: clamp(260px, 22vw, 380px); height: auto; transform: rotate(-6deg); pointer-events: none; }
+}
+/* debajo de 1024px: la foto arriba y el texto sobre el rojo, a todo el ancho */
+@media (max-width: 1023px) {
+  .hero--brand > .hero__sticker { display: none; }
+  .hero--photo.hero--brand .hero__text, .hero--photo.hero--brand .hero__text h1 { color: #fff7f0; --ink: #fff7f0; --muted: #fbe3e5; }
+  .hero--photo.hero--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); }
+  .hero--photo.hero--brand > .hero__pic { top: var(--nav); bottom: auto; height: var(--photo); }
+  .hero--photo.hero--brand > .hero__pic > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); }
+}
+/* tablet y celular: la foto más alta, para que no quede rojo vacío bajo el título */
+@media (min-width: 640px) and (max-width: 1023px) { .hero--photo.hero--brand { --photo: 58svh; } }
+@media (max-width: 639px) { .hero--photo.hero--brand { --photo: 46svh; } }

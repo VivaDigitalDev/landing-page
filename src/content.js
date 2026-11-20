@@ -15,8 +15,6 @@ export const hero = {
   // cada frase va en su propia línea (separadas por |); la palabra entre asteriscos va en serif itálica
   title: 'Creamos tu *marca*.|Mostramos tus *productos*.|Hacemos que se *vendan*.',
   sticker: { src: '/img/sticker-forreal.webp', w: 640, h: 220 },
-  lead:
-    'Agencia de marketing para pymes en Rosario: estrategia, contenido, fotos, web y automatización. Proyectos desde USD 500.',
   photo: { src: '/img/portada.jpg', webp: '/img/portada.webp', alt: 'El equipo de Viva revisa un proyecto en una notebook, en el estudio con moodboards de la marca en la pared rosa' },
 }
 

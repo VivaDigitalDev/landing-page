@@ -1,33 +1,28 @@
 import { hero } from '../content.js'
 import { MainButton, Rich } from './ui.jsx'
 
-// Hero "product" sobre el rojo de la marca: arriba el título (izquierda) y la frase con los
-// botones (derecha); debajo, la foto del equipo a todo el ancho de la pantalla, sin nada encima
-// salvo el sticker en una esquina.
+// Hero "photo": la foto del equipo a pantalla completa y, abajo a la izquierda, una caja roja
+// chica con el título y los botones (tapa solo el piso y las piernas, nunca una cara).
+// En celular y tablet la foto va arriba y el texto debajo, sobre el rojo.
 export default function Hero() {
   return (
-    <section className="hero hero--product hero--brand" data-enter="" aria-labelledby="hero-h">
+    <section className="hero hero--photo hero--brand" data-enter="" data-calm="left" aria-labelledby="hero-h">
+      <picture className="hero__pic">
+        <source srcSet={hero.photo.webp} type="image/webp" />
+        <img className="hero__bg" src={hero.photo.src} alt={hero.photo.alt} fetchpriority="high" width="2000" height="1116"
+          style={{ '--ly-pos': '58% 30%', '--ly-pos-phone': '60% 50%' }} />
+      </picture>
+      <img className="hero__sticker" src={hero.sticker.src} alt="" aria-hidden="true" width={hero.sticker.w} height={hero.sticker.h} />
       <div className="wrap">
-        <div className="hero-text hero__in">
-          <div className="hero__head">
-            <div>
-              <h1 id="hero-h" className="hero__title">
-                {hero.title.split('|').map((line) => <span key={line}><Rich text={line} /></span>)}
-              </h1>
-              <p className="hero__lead">{hero.lead}</p>
-            </div>
+        <div className="hero-text">
+          <div className="hero__text">
+            <h1 id="hero-h" className="hero__title">
+              {hero.title.split('|').map((line) => <span key={line}><Rich text={line} /></span>)}
+            </h1>
             <div className="btn-row">
               <MainButton />
               <a className="btn btn--secondary" href="#trabajos">Ver trabajos</a>
             </div>
-          </div>
-          <div className="hero__stage">
-            <picture>
-              <source srcSet={hero.photo.webp} type="image/webp" />
-              <img src={hero.photo.src} alt={hero.photo.alt} fetchpriority="high" width="2000" height="1116"
-                style={{ '--ly-pos': '50% 88%', '--ly-pos-phone': '60% 60%' }} />
-            </picture>
-            <img className="hero__sticker" src={hero.sticker.src} alt="" aria-hidden="true" width={hero.sticker.w} height={hero.sticker.h} />
           </div>
         </div>
       </div>
