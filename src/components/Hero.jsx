@@ -19,6 +19,7 @@ export default function Hero() {
             <h1 id="hero-h" className="hero__title">
               {hero.title.split('|').map((line) => <span key={line}><Rich text={line} /></span>)}
             </h1>
+            <p className="hero__sub">{hero.sub}</p>
             <div className="btn-row">
               <MainButton />
               <a className="btn btn--secondary" href="#trabajos">Ver trabajos</a>

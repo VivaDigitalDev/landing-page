@@ -1,12 +1,14 @@
 import { metodo } from '../content.js'
+import { Rich } from './ui.jsx'
 
-// steps: los cuatro pasos del método, cada uno con una imagen de esa etapa.
+// steps: los cuatro pasos del método, con el número grande en lugar de foto
+// (las piezas de clientes van solo en Trabajos).
 export default function Metodo() {
   return (
     <section className="section ground-surface" id="metodo" style={{ "--hm": 2 }} aria-labelledby="metodo-h">
       <div className="wrap">
         <div className="section-head">
-          <h2 id="metodo-h">{metodo.title}</h2>
+          <h2 id="metodo-h"><Rich text={metodo.title} /></h2>
           <p>{metodo.lead}</p>
         </div>
         <div className="grid">
@@ -15,7 +17,6 @@ export default function Metodo() {
               <span className="step-num">{s.n}</span>
               <h3>{s.title}</h3>
               <p>{s.line}</p>
-              <div className="panel"><img className="frame__img" src={s.img.src} alt={s.img.alt} loading="lazy" /></div>
             </article>
           ))}
         </div>

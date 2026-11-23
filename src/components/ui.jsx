@@ -1,5 +1,8 @@
 import { MAIN_ACTION } from '../content.js'
 
+// En la home los links a secciones son #ancla; en las páginas de servicio vuelven a la home.
+export const toHome = (hash, home = true) => (home ? hash : `/${hash}`)
+
 // La flecha dibujada del botón principal (motion.css la anima en hover).
 export function Arrow() {
   return (
@@ -11,9 +14,9 @@ export function Arrow() {
 }
 
 // La acción principal: el mismo texto en el nav, el hero, el cierre y la barra del celular.
-export function MainButton({ className = '', arrow = true }) {
+export function MainButton({ className = '', arrow = true, home = true }) {
   return (
-    <a className={`btn btn--primary ${className}`.trim()} href="#propuesta">
+    <a className={`btn btn--primary ${className}`.trim()} href={toHome('#propuesta', home)}>
       {MAIN_ACTION}
       {arrow && <Arrow />}
     </a>
@@ -29,9 +32,9 @@ export function Rich({ text }) {
   )
 }
 
-export function Logo() {
+export function Logo({ home = true }) {
   return (
-    <a className="nav__logo" href="#top" aria-label="Viva Digital, volver al inicio">
+    <a className="nav__logo" href={home ? '#top' : '/'} aria-label="Viva Digital, volver al inicio">
       <img className="logo" src="/logo.svg" alt="Viva" width="120" height="47" />
     </a>
   )

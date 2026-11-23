@@ -19,8 +19,8 @@ export default function App() {
         <Servicios />
         <Manifiesto />
         <Trabajos />
-        <Preguntas />
         <Metodo />
+        <Preguntas />
         <Propuesta />
       </main>
       <Footer />
