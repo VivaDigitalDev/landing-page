@@ -1,0 +1,8 @@
+node_modules
+dist
+.ssr
+.taste-skill/chrome-*
+shots
+.DS_Store
+.taste-skill/
+.claude/

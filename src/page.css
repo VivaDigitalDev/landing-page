@@ -1,0 +1,461 @@
+/* CSS propio de la página: solo lo que el kit no trae (el logo, el formulario de WhatsApp,
+   el diagrama dentro de la imagen de servicios y la altura de los paneles del método). */
+
+/* el logo sticker es más ancho que alto: lo mostramos a 32px de alto en el nav */
+.nav__logo img.logo { height: 32px; width: auto; display: block; }
+.footer .nav__logo img.logo { height: 40px; }
+@media (max-width: 639px) { .nav__logo img.logo { height: 26px; } }
+
+/* el formulario va en una tarjeta sobre el fondo alternativo */
+.form--card { background: var(--p-bg); border-radius: var(--r-lg); padding: var(--s-7); grid-template-columns: minmax(0, 1fr); align-content: start; }
+@media (max-width: 639px) { .form--card { padding: var(--s-5); } }
+.form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.form legend { padding: 0; margin-bottom: var(--s-2); font-size: var(--t-small); font-weight: 500; }
+.choices { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.choice { position: relative; display: inline-flex; }
+.choice input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; clip-path: inset(50%); }
+.choice span { cursor: pointer; }
+.choice span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4); border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--ink) 18%, transparent); font-size: 15px; font-weight: 400; color: var(--ink); }
+.choice input:checked + span { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.choice input:focus-visible + span { outline: 2px solid var(--action); outline-offset: 2px; }
+
+/* el diagrama de Automatización ocupa el mismo marco que las fotos de servicios */
+.frame.frame--photo > .peek-diagram { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--s-6); background: var(--p-surface); }
+/* oculto con visibility (no display:none) para que el diagrama tenga tamaño y se dibuje al cargar */
+.frame.frame--photo > .peek-diagram[hidden] { display: grid; visibility: hidden; }
+.peek-diagram .dg { width: 100%; max-width: 520px; }
+
+/* los cuatro pasos del método: el número grande en la tipografía de títulos, sin fotos */
+#metodo .step-num { display: block; width: auto; height: auto; border: 0; border-radius: 0; background: none; box-shadow: none;
+  font: 700 clamp(56px, 4vw + 24px, 96px)/0.9 var(--font-display); letter-spacing: -0.03em; color: var(--viva-red); }
+
+/* pantallas de 320 a 359px: menos alto para que nada se pise */
+@media (max-width: 359px) { .hero .btn--secondary { display: none; } }
+
+/* 640 a 1279px: el formulario necesita dos pantallas; la tarjeta nunca se sale de su columna */
+.form--card { min-width: 0; }
+.form--card :is(textarea, input) { width: 100%; max-width: 100%; }
+@media (min-width: 640px) and (max-width: 1279px) { #propuesta { --h: 2 } }
+
+/* el logo sticker grande en el footer bordó */
+.footer .footer__logo img.logo { height: clamp(56px, 6vw, 96px); }
+
+
+/* la frase de "Por qué Viva": más grande y con un sticker abajo a la derecha */
+#manifiesto .wrap { position: relative; height: 100%; }
+#manifiesto .mo-wh__text { font-size: clamp(34px, 3.4vw + 12px, 64px); line-height: 1.1; max-width: 1080px; }
+#manifiesto .manifiesto__mark { position: absolute; right: 0; bottom: 0; width: clamp(180px, 26vw, 380px); height: auto; pointer-events: none; transform: rotate(-5deg); }
+@media (max-width: 639px) { #manifiesto .manifiesto__mark { width: 170px; } }
+
+/* el damero rosa y naranja de las piezas de redes, como franja al pie de "Por qué Viva" */
+#manifiesto { --checker: 32px; position: relative; overflow: hidden; }
+#manifiesto::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--checker) * 2);
+  background: repeating-conic-gradient(var(--checker-pink) 0 25%, var(--checker-orange) 0 50%) 0 0 / calc(var(--checker) * 2) calc(var(--checker) * 2);
+  pointer-events: none;
+}
+#manifiesto .manifiesto__mark { bottom: calc(var(--checker) * 2 - var(--padb, 72px) + 24px); }
+@media (max-width: 639px) { #manifiesto { --checker: 20px; } #manifiesto::after { bottom: var(--bar, 0px); } }
+
+/* la palabra en serif itálica de cada título (Instrument Serif), como en las piezas de redes */
+.serif { font-family: var(--font-accent); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+h1 .serif, h2 .serif { font-size: 1.08em; line-height: 0; }
+#servicios h2 .serif, #close-h .serif { color: var(--viva-red); }
+.footer--dark #close-h .serif { color: var(--viva-lime); }
+
+
+/* "Por qué Viva" sobre bordó, con "venda más" en serif itálica rosa */
+#manifiesto .mo-wh__text strong { font-family: var(--font-accent); font-style: italic; font-weight: 400; }
+
+/* stickers sobre la imagen de cada servicio (video, globo, robot) */
+.frame.frame--photo > .peek-sticker { position: absolute; z-index: 2; left: 24px; bottom: 24px; width: clamp(96px, 11vw, 150px); height: auto; transform: rotate(-8deg); pointer-events: none; }
+.frame.frame--photo > [hidden] + .peek-sticker { display: none; }
+
+.footer .socials a { display: inline-grid; place-items: center; width: 44px; height: 44px; color: var(--ink); }
+.footer .socials a:hover { color: var(--viva-lime); }
+
+
+/* el título de tres frases: una por línea. Desde 1280px la caja roja ocupa 7 de 12 columnas
+   para que cada frase entre en una sola línea */
+.hero .hero__title { font-size: clamp(34px, 1.6vw + 24px, 50px); line-height: 1.04; }
+.hero .hero__title { max-width: none; text-wrap: wrap; }
+.hero .hero__title > span { display: block; }
+@media (min-width: 1280px) { .hero .hero__title > span { white-space: nowrap; } }
+@media (max-width: 639px) { .hero .hero__title { font-size: clamp(26px, 6.8vw, 30px); } }
+
+/* hero sobre el rojo de la marca: texto crema, palabras en serif lima, botón lima */
+.hero--brand { background: var(--viva-red); color: #fff7f0;
+  --ink: #fff7f0; --muted: #fbe3e5; --bg: var(--viva-red);
+  --line: rgb(255 247 240 / .18); --line-strong: rgb(255 247 240 / .4);
+  --action: var(--viva-lime); --action-ink: #5e0a2b; --surface: rgb(255 247 240 / .16); }
+.hero--brand :is(h1, .hero__lead) { color: #fff7f0; }
+.hero--brand .serif { color: var(--viva-lime); }
+
+
+/* portada: la foto a pantalla completa (dentro de <picture>) */
+.hero--photo > .hero__pic { position: absolute; inset: 0; z-index: 0; }
+.hero--photo > .hero__pic > img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
+
+/* desde 1024px: la caja roja chica, abajo a la izquierda, solo con el título y los botones */
+@media (min-width: 1024px) {
+  .hero--photo.hero--brand { background: #1b1b1b; }
+  .hero--photo.hero--brand > .wrap > .hero-text { justify-content: flex-end; }
+  .hero--photo.hero--brand .hero__text { width: auto; max-width: 640px; padding: var(--s-6) var(--s-7) var(--s-7); background: var(--viva-red); color: #fff7f0;
+    --ink: #fff7f0; --muted: #fbe3e5; --line: rgb(255 247 240 / .18); --line-strong: rgb(255 247 240 / .4); }
+  .hero--photo.hero--brand .hero__text h1 { color: #fff7f0; }
+  .hero--photo.hero--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); --surface: rgb(94 10 43 / .28); margin-top: var(--s-6); }
+  .hero--photo.hero--brand .hero__title { font-size: clamp(34px, 1.1vw + 22px, 44px); }
+  .hero--brand > .hero__sticker { position: absolute; z-index: 1; right: max(var(--gut), 50% - 640px); bottom: 64px;
+    width: clamp(260px, 22vw, 380px); height: auto; transform: rotate(-6deg); pointer-events: none; }
+}
+/* debajo de 1024px: la foto arriba y el texto sobre el rojo, a todo el ancho */
+@media (max-width: 1023px) {
+  .hero--brand > .hero__sticker { display: none; }
+  .hero--photo.hero--brand .hero__text, .hero--photo.hero--brand .hero__text h1 { color: #fff7f0; --ink: #fff7f0; --muted: #fbe3e5; }
+  .hero--photo.hero--brand .btn-row { --ink: #fff7f0; --bg: var(--viva-red); --action: var(--viva-lime); --action-ink: #5e0a2b; --line-strong: rgb(255 247 240 / .4); --surface: rgb(94 10 43 / .28); }
+  .hero--photo.hero--brand > .hero__pic { top: var(--nav); bottom: auto; height: var(--photo); }
+  .hero--photo.hero--brand > .hero__pic > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); }
+}
+/* tablet y celular: la foto más alta, para que no quede rojo vacío bajo el título */
+@media (min-width: 640px) and (max-width: 1023px) { .hero--photo.hero--brand { --photo: 58svh; } }
+@media (max-width: 639px) { .hero--photo.hero--brand { --photo: 46svh; } }
+
+/* títulos como en el manual: Bricolage Grotesque bold en mayúsculas; la palabra en serif
+   itálica queda en minúscula, como en las piezas de redes */
+h1, h2 { font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; }
+h1 .serif, h2 .serif { text-transform: none; letter-spacing: -0.01em; }
+
+/* Método sin fotos: cada paso es una tarjeta crema alta, con el número arriba y el texto abajo */
+#metodo .card { background: var(--p-bg); border-radius: var(--r-lg); padding: var(--s-6);
+  min-height: clamp(300px, 48vh, 460px); display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-3); }
+#metodo .card { justify-content: flex-start; }
+#metodo .step-num { order: 3; margin-top: auto; }
+@media (min-width: 640px) and (max-width: 1023px) { #metodo .card { min-height: clamp(260px, 30vh, 340px); } }
+@media (max-width: 639px) { #metodo .card { min-height: 240px; padding: var(--s-5); } }
+@media (max-width: 359px) { #metodo .card { min-height: 0; padding: var(--s-4); gap: var(--s-2); } #metodo .step-num { font-size: 40px; } #contact .btn--xl { font-size: 16px; padding-inline: 18px; } }
+
+/* la barra fija del celular se esconde sobre el formulario (src/whatsapp.js) */
+.actionbar.is-off { transform: translateY(100%); visibility: hidden; }
+
+/* portada: una línea corta bajo el título que dice para quién y dónde */
+.hero .hero__sub { margin: var(--s-3) 0 0; font-size: 17px; font-weight: 500; line-height: 1.35; color: #fff7f0; max-width: none; }
+
+/* celular y tablet: el sticker FORREAL en el rojo de abajo, a la derecha */
+@media (max-width: 1023px) {
+  .hero--brand > .hero__sticker { display: block; position: absolute; z-index: 1; right: var(--gut, 24px); bottom: calc(var(--s-6) + var(--bar, 0px));
+    width: clamp(150px, 38vw, 240px); height: auto; transform: none; pointer-events: none; }
+}
+
+/* Servicios: el nombre de cada servicio más fuerte que su descripción, con aire arriba y abajo */
+#servicios .rows__name { display: block; padding-block: 2px; font-family: var(--font-display); font-weight: 700; font-size: 18px; line-height: 1.3; }
+@media (max-width: 359px) {
+  #preguntas { --hm: 2; }
+  .hero .hero__sub { font-size: 15px; margin-top: var(--s-2); }
+  .hero--photo.hero--brand { --photo: 42svh; }
+}
+
+/* "Ver trabajos" sobre la caja roja: fondo bordó translúcido para que el crema llegue a 4.5:1 */
+.hero--brand .btn-row .btn--secondary { background-color: rgb(94 10 43 / .3); }
+
+/* ---- ronda 2 de la crítica ---- */
+
+/* el botón principal es el mismo en toda la página: lima con texto y borde bordó */
+.btn--primary { --action: var(--viva-lime); --action-ink: #5e0a2b; border: 1px solid #5e0a2b; }
+.hero--brand .btn--primary { border-color: transparent; }
+
+/* cierre: "Abrir WhatsApp" del ancho de su texto */
+.closing__cta .btn--secondary { width: auto; align-self: flex-start; justify-self: start; }
+
+/* títulos de tercer nivel con un solo peso y una sola familia */
+.faq .faq__item > h3, #metodo .card h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; line-height: 1.3; }
+
+/* Servicios: el subtítulo va aparte, en minúscula y gris */
+#servicios .section-head > p { color: var(--muted); font-size: var(--t-lead); }
+
+/* la etiqueta de "Por qué Viva" más grande y en rosa claro sobre el bordó */
+#manifiesto .t-label { font-size: 15px; font-weight: 600; color: var(--viva-pink); }
+
+/* el texto de ejemplo del formulario con contraste suficiente */
+.form ::placeholder { color: color-mix(in oklab, var(--ink) 70%, var(--p-bg)); opacity: 1; }
+
+/* Servicios: la miniatura de cada fila solo existe sin hover (celular y tablet) */
+.rows__thumb { display: none; }
+@media (max-width: 1023px) {
+  #servicios .frame--fill { display: none; }
+  #servicios .rows > li { grid-template-columns: minmax(0, 1fr) 88px; align-items: center; }
+  #servicios .rows > li > :not(.rows__thumb) { grid-column: 1; }
+  #servicios .rows__thumb { display: block; grid-column: 2; grid-row: 1 / span 2; width: 88px; height: 88px;
+    object-fit: cover; border-radius: var(--r-md, 12px); background: var(--p-surface); }
+  #servicios .rows > li:last-child .rows__thumb { object-fit: contain; padding: 8px; }
+  #servicios .rows > li:first-child { padding-top: var(--s-4); }
+}
+
+/* celular: Método, Preguntas y Propuesta miden lo que pide su contenido (al menos una pantalla);
+   el bloque .fill crece con lo que tiene en vez de achicarse y desbordar */
+@media (max-width: 639px) {
+  :is(#metodo, #preguntas, #propuesta) { --hm: 1 !important; }
+  :is(#preguntas, #propuesta) .wrap > .fill { flex: 1 0 auto; min-height: auto; }
+  #metodo .card { min-height: 0; padding: var(--s-4); gap: var(--s-2); }
+  /* los cuatro pasos en 2 x 2 para que el método entre en una pantalla */
+  #metodo .wrap > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  #metodo .wrap > .grid > .card { grid-column: auto; }
+  #metodo .card h3 { font-size: 16px; }
+  #metodo .card p { font-size: 14px; line-height: 1.45; }
+  #metodo .step-num { font-size: 44px; }
+}
+/* sin la foto grande, Servicios entra en una pantalla del celular */
+@media (min-width: 360px) and (max-width: 639px) and (min-height: 780px) { #servicios { --hm: 1 !important; } }
+
+/* ---- páginas de servicio y links de servicios ---- */
+
+/* cada fila de servicios es un link: su ::after se estira sobre toda la fila
+   (el punto del kit queda en el ::after del nombre, sin pisarse) */
+.rows > li:has(> .rows__link) { position: relative; cursor: pointer; }
+.rows__link { color: inherit; text-decoration: none; display: flex; align-items: center; gap: var(--s-2); }
+.rows__link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+#servicios .rows__link > .rows__name { display: inline; }
+.rows__link .m-arrow { width: 12px; height: 12px; flex: none; }
+.rows > li:has(> .rows__link):hover .rows__link { color: var(--viva-red); }
+.rows > li > p, .rows > li > .rows__thumb { pointer-events: none; }
+.rows__link:focus-visible { outline: none; }
+.rows > li:has(> .rows__link:focus-visible) { outline: 2px solid var(--viva-red); outline-offset: 4px; border-radius: 4px; }
+
+/* portada del servicio: el título es corto, la caja roja más angosta */
+.hero--service .hero__title > * { white-space: normal; }
+@media (min-width: 1024px) { .hero--service.hero--brand .hero__text { max-width: 560px; } }
+
+/* "Qué incluye": cuatro bloques grandes en 2 x 2 */
+.incluye { list-style: none; margin: 0; padding: 0; grid-auto-rows: 1fr; row-gap: var(--s-4); }
+.incluye__item { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-6); background: var(--p-surface); border-radius: var(--r-lg); }
+.incluye__item h3 { font: 700 clamp(22px, 1.2vw + 12px, 30px)/1.15 var(--font-display); text-transform: uppercase; letter-spacing: -0.01em; }
+.incluye__item p { color: var(--muted); max-width: 40ch; }
+.incluye__n { margin-top: auto; order: 3; font: 700 clamp(40px, 2vw + 24px, 64px)/0.9 var(--font-display); color: var(--viva-red); }
+@media (max-width: 639px) {
+  .incluye { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  .incluye > .incluye__item { grid-column: auto; padding: var(--s-4); }
+  .incluye__item h3 { font-size: 17px; }
+  .incluye__item p { font-size: 14px; line-height: 1.45; }
+  .incluye__n { font-size: 36px; }
+}
+
+/* "Otros servicios": tarjetas con la foto de cada servicio */
+.otro { display: flex; flex-direction: column; gap: var(--s-2); color: inherit; text-decoration: none; }
+.otro__pic { position: relative; flex: 1 1 auto; min-height: 220px; border-radius: var(--r-lg); overflow: hidden; }
+.otro__pic > .frame__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.otro__name { font: 700 19px/1.3 var(--font-display); display: inline-flex; align-items: center; gap: var(--s-2); margin-top: var(--s-2); }
+.otro__name .m-arrow { width: 12px; height: 12px; }
+.otro__line { color: var(--muted); font-size: 15px; }
+.otro:hover .otro__name { color: var(--viva-red); }
+@media (max-width: 1023px) { .otros { grid-template-columns: repeat(2, minmax(0, 1fr)); } .otros > .otro { grid-column: auto; } .otro__pic { min-height: 160px; } }
+@media (max-width: 639px) { .otro__pic { min-height: 0; aspect-ratio: 4 / 3; flex: none; } .otro__line { display: none; } }
+
+/* casos: el rubro en rojo, la foto o el video en su proporción */
+.caso__rubro { color: var(--viva-red); font-weight: 600; }
+.caso__media { position: relative; border-radius: var(--r-lg); overflow: hidden; }
+.caso__media > .frame__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.caso__gallery { min-height: 0; }
+.caso__gallery > .frame { position: relative; border-radius: var(--r-lg); overflow: hidden; min-height: 280px; }
+.caso__gallery > .frame > .frame__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* hasta 1279px el texto del caso va arriba y la foto o el video a todo el ancho */
+@media (max-width: 1279px) { .caso__split > [class*="span-"] { grid-column: 1 / -1; } }
+/* celular: dos fotos lado a lado (la tercera queda para pantallas más grandes) */
+@media (max-width: 639px) {
+  .caso__gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  .caso__gallery > .frame { grid-column: auto; min-height: 0; aspect-ratio: 3 / 4; }
+  .caso__gallery--3 > .frame:nth-child(3) { display: none; }
+}
+
+/* botón de pausa de los videos de los casos */
+.caso__play, .caso__sound { width: 44px; height: 44px; display: grid; place-items: center;
+  border: 0; border-radius: 999px; background: rgb(94 10 43 / .72); color: #fff7f0; cursor: pointer; }
+.caso__play svg, .caso__sound svg { width: 16px; height: 16px; }
+:is(.caso__play, .caso__sound):hover { background: #5e0a2b; }
+:is(.caso__play, .caso__sound):focus-visible { outline: 2px solid var(--viva-lime); outline-offset: 2px; }
+
+/* el diagrama de automatización en su marco */
+.caso__diagram { position: relative; display: grid; place-items: center; min-height: 420px; padding: var(--s-6); background: var(--p-bg); border-radius: var(--r-lg); }
+.caso__diagram .dg { width: 100%; max-width: 560px; }
+
+/* ajustes de las páginas de servicio en celular y tablet */
+@media (max-width: 639px) {
+  .otro__name { font-size: 15px; flex-wrap: wrap; }
+  /* la primera foto del caso a todo el ancho, las otras debajo */
+  .caso__gallery > .frame:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+  .caso__gallery--2 > .frame { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+  .caso__gallery--3 > .frame:nth-child(3) { display: block; }
+  .caso__gallery--3 > .frame:not(:first-child) { aspect-ratio: 1 / 1; }
+  /* videos y capturas en 4:3, mostrando la parte de arriba */
+  .caso__split .caso__media { aspect-ratio: 4 / 3 !important; }
+  .caso__split .caso__media > .frame__img { object-position: 50% 0; }
+}
+@media (max-width: 359px) { .otro__name .m-arrow { display: none; } }
+@media (min-width: 640px) and (max-width: 1023px) { .caso__gallery > .frame { min-height: 200px; } }
+.caso__diagram { min-height: clamp(420px, 62vh, 640px); }
+@media (max-width: 359px) {
+  .incluye__item { padding: var(--s-3); }
+  .incluye__item p { font-size: 13px; }
+  .caso__split .caso__media { aspect-ratio: 16 / 10 !important; }
+}
+@media (max-width: 639px) { .caso__diagram { min-height: 300px; padding: var(--s-4); } }
+/* home: Servicios con el subtítulo aparte necesita filas un poco más juntas para entrar en su pantalla */
+@media (min-width: 1024px) and (max-width: 1279px) { #servicios .rows > li { padding-block: var(--s-3); } }
+@media (max-width: 1023px) {
+  #servicios .rows > li { padding-block: var(--s-3); grid-template-columns: minmax(0, 1fr) 72px; }
+  #servicios .rows__thumb { width: 72px; height: 72px; }
+}
+@media (max-width: 1279px) { #servicios .section-head > p { font-size: 17px; } #servicios .section-head { margin-bottom: var(--s-5); } }
+@media (max-width: 639px) {
+  #servicios .rows > li { grid-template-columns: minmax(0, 1fr) 64px; }
+  #servicios .rows__thumb { width: 64px; height: 64px; }
+  #servicios .rows > li > p { font-size: 15px; }
+}
+@media (max-width: 359px) {
+  .caso__split p { font-size: 15px; }
+  .caso__diagram { min-height: 260px; }
+}
+/* pantallas muy anchas: el video o la captura del caso más alto, entero sobre blanco */
+@media (min-width: 1600px) {
+  .caso__split .caso__media { aspect-ratio: auto !important; height: 62vh; background: #fff; }
+  .caso__split .caso__media > .frame__img { object-fit: contain; }
+}
+@media (max-width: 359px) {
+  .caso__split .stack-4 { gap: var(--s-2); }
+  #ejemplo .muted { display: none; }
+}
+/* Contenido y redes: cuatro posteos como un feed, en su proporción de Instagram (4:5) */
+.caso__gallery--4 { align-content: start; }
+.caso__gallery--4 > .frame { min-height: 0; aspect-ratio: 4 / 5; }
+@media (max-width: 639px) {
+  .caso__gallery--4 > .frame, .caso__gallery--4 > .frame:first-child { grid-column: auto; aspect-ratio: 4 / 5; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .caso__gallery--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .caso__gallery--4 > .frame { grid-column: auto; aspect-ratio: 1 / 1; min-height: 0; }
+}
+
+/* ---- ronda 3 de la crítica ---- */
+
+/* el menú se cierra mientras se scrollea (src/whatsapp.js) y "Servicios" queda marcado en sus páginas */
+.nav.is-scrolling .nav__menu { display: none !important; }
+.nav__link[aria-current="page"] { color: var(--viva-red); }
+
+/* Trabajos: link al portfolio de cada caso */
+.mo-ph__more { margin-top: var(--s-2); }
+.mo-ph__more .link { font-weight: 600; display: inline-flex; align-items: center; gap: var(--s-2); }
+.mo-ph__more .m-arrow { width: 12px; height: 12px; }
+
+/* rubro de cada caso: rojo más oscuro para llegar a 4.5:1 sobre el beige */
+.caso__rubro { color: color-mix(in oklab, var(--viva-red) 78%, #5e0a2b); }
+
+/* el botón de pausa siempre en la esquina (el kit centra los hijos del marco) */
+.frame > .caso__controls { position: absolute; z-index: 2; right: 16px; bottom: 16px; left: auto; top: auto; margin: 0; display: flex; gap: var(--s-2); }
+.frame > .caso__controls > .caso__play { position: static; }
+
+/* "Otros servicios": el robot de Automatización sobre bordó */
+.otro__pic--sticker { background: #5e0a2b; }
+.otro__pic--sticker > .frame__img { object-fit: contain; padding: 18%; }
+
+/* portada de Automatización: el diagrama sobre bordó en lugar de una foto */
+.hero__pic--diagram { background: #5e0a2b; display: grid; place-items: center; }
+.hero__pic--diagram .dg { width: min(560px, 80%); }
+@media (min-width: 1024px) {
+  .hero__pic--diagram { place-items: center end; padding-right: max(var(--gut, 80px), 50% - 640px); }
+  .hero__pic--diagram .dg { width: min(620px, 46vw); }
+}
+@media (max-width: 1023px) { .hero__pic--diagram { padding: var(--s-5); } .hero__pic--diagram .dg { width: min(460px, 100%); } }
+
+/* el chat de ejemplo de Automatización */
+.chat { border-radius: var(--r-lg); overflow: hidden; background: #ece5dd; box-shadow: 0 12px 32px rgb(94 10 43 / .12); align-self: center; }
+.chat__bar { display: flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-4); background: #5e0a2b; color: #fff7f0; }
+.chat__bar strong { display: block; font-size: 15px; }
+.chat__bar small { display: block; font-size: 13px; opacity: .8; }
+.chat__avatar { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 999px; background: var(--viva-lime); color: #5e0a2b; font-weight: 700; }
+.chat__body { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-5) var(--s-4); }
+.chat__msg { max-width: 80%; padding: 10px 14px; border-radius: 14px; font-size: 16px; line-height: 1.4; color: #2b1a1f; }
+.chat__msg--in { align-self: flex-start; background: #fff; border-top-left-radius: 4px; }
+.chat__msg--out { align-self: flex-end; background: #dcf8c6; border-top-right-radius: 4px; }
+.chat__note { align-self: center; margin-top: var(--s-2); padding: 6px 12px; border-radius: 999px; background: rgb(255 255 255 / .7); font-size: 13px; color: #5e0a2b; }
+@media (max-width: 1279px) { .chat { grid-column: 1 / -1; } }
+
+/* Método y "Qué incluye": texto más grande, menos vacío */
+@media (min-width: 640px) { #metodo .card p, .incluye__item p { font-size: 17px; line-height: 1.5; } }
+@media (min-width: 1024px) { #metodo .card { min-height: clamp(280px, 40vh, 400px); } }
+
+@media (min-width: 1024px) {
+  .chat { min-height: clamp(460px, 58vh, 600px); display: flex; flex-direction: column; }
+  .chat__body { flex: 1; justify-content: center; gap: var(--s-3); padding: var(--s-6); }
+  .chat__msg { font-size: 18px; }
+}
+/* celular: la tarjeta de cada caso más chica (título y "Ver el caso"), para que se vea la foto */
+@media (max-width: 639px) {
+  [data-moment="photo-chapters"].is-live .mo-ph__panel { padding: var(--s-4); gap: var(--s-2); }
+  [data-moment="photo-chapters"].is-live .mo-ph__ch h3 { font-size: 20px; }
+  [data-moment="photo-chapters"].is-live .mo-ph__ch p:not(.mo-ph__more) { display: none; }
+  .mo-ph__more { margin-top: 0; }
+}
+
+/* videos verticales (reels): ocupan su columna entera, en 9:16 */
+.caso__split .caso__media--vertical { width: 100%; aspect-ratio: 9 / 16 !important; height: auto; }
+@media (min-width: 1600px) { .caso__split .caso__media--vertical { height: auto; background: transparent; } .caso__split .caso__media--vertical > .frame__img { object-fit: cover; } }
+@media (min-width: 1280px) { .caso__split:has(.caso__media--vertical) { align-items: center; } }
+@media (max-width: 1279px) { .caso__split .caso__media--vertical { width: min(100%, 360px); } }
+/* tablet: videos y capturas horizontales en 4:3 para que llenen la pantalla */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .caso__split .caso__media:not(.caso__media--vertical) { aspect-ratio: 4 / 3 !important; }
+  .caso__split .caso__media:not(.caso__media--vertical) > .frame__img { object-position: 50% 0; }
+}
+/* el reel vertical va al lado del texto también en tablet y laptop chica; en el celular, debajo y en 4:5 */
+@media (min-width: 640px) and (max-width: 1279px) {
+  .caso__split:has(.caso__media--vertical) { align-items: center; }
+  .caso__split:has(.caso__media--vertical) > [class*="span-"]:first-child { grid-column: 1 / span 6; }
+  .caso__split:has(.caso__media--vertical) > [class*="span-"]:last-child { grid-column: 7 / -1; }
+  .caso__split .caso__media--vertical { width: 100%; }
+}
+@media (max-width: 639px) { .caso__split .caso__media--vertical { width: 100%; aspect-ratio: 4 / 5 !important; } }
+
+/* botón de sonido, junto al de pausa */
+.caso__sound { display: grid; place-items: center; border: 0; border-radius: 999px; background: rgb(94 10 43 / .72); color: #fff7f0; cursor: pointer; }
+.caso__sound[aria-pressed="true"] { background: var(--viva-lime); color: #5e0a2b; }
+
+/* tira deslizable de videos (Fotografía): todos del mismo alto, se corren con el dedo o con las flechas */
+.reel { display: flex; flex-direction: column; gap: var(--s-4); min-height: 0; }
+.reel__track { flex: none; height: clamp(320px, 58vh, 560px); display: flex; gap: var(--s-4); overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: var(--r-lg); }
+.reel__track::-webkit-scrollbar { display: none; }
+.reel__track:focus-visible { outline: 2px solid var(--viva-red); outline-offset: 4px; }
+.reel__item { flex: none; height: 100%; width: auto; scroll-snap-align: start; position: relative; border-radius: var(--r-lg); overflow: hidden; }
+.reel__item > .frame__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.reel__nav { display: flex; gap: var(--s-2); justify-content: flex-end; }
+.reel__btn { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 999px; border: 1px solid #5e0a2b; background: transparent; color: #5e0a2b; cursor: pointer; }
+.reel__btn:hover:not(:disabled) { background: #5e0a2b; color: #fff7f0; }
+.reel__btn:disabled { opacity: .35; cursor: default; }
+.reel__btn .m-arrow { width: 14px; height: 14px; }
+.reel__btn[data-reel-prev] .m-arrow { transform: scaleX(-1); }
+@media (max-width: 639px) { .reel__track { height: min(60vh, 520px); } }
+/* el ancla de cada caso: al llegar desde "Ver el caso", el título no queda debajo del menú */
+.caso__anchor { display: block; height: 0; scroll-margin-top: calc(var(--nav, 72px) + 24px); }
+
+/* ---- ronda 4 de la crítica ---- */
+/* el diagrama de Automatización más grande en su portada */
+@media (min-width: 1024px) { .hero__pic--diagram .dg { width: min(760px, 52vw); } }
+@media (max-width: 1023px) { .hero__pic--diagram .dg { width: min(560px, 100%); } }
+/* títulos de portada repartidos parejo entre líneas */
+.hero .hero__title { text-wrap: balance; }
+/* "Abrir WhatsApp" del cierre con contraste sobre el bordó */
+.footer--dark .closing__cta .btn--secondary { color: #fff7f0; border: 1px solid rgb(255 247 240 / .7); background: transparent; }
+.footer--dark .closing__cta .btn--secondary:hover { background: rgb(255 247 240 / .12); }
+/* filas de Servicios: la flecha en su propia columna, a la derecha del texto */
+@media (min-width: 1024px) {
+  #servicios .rows__link { width: 100%; }
+  #servicios .rows__link .m-arrow { margin-left: auto; }
+}
+
+/* ---- ronda 5 de la crítica ---- */
+/* Trabajos en el celular: cada caso con su propio encuadre, para que no se corten los títulos */
+@media (max-width: 639px) { [data-moment="photo-chapters"] .mo-ph__pic img[style*="--pos-phone"] { object-position: var(--pos-phone); } }
+/* casos de un solo video o captura: centrados en su pantalla en lugar de dejar el vacío abajo */
+@media (min-width: 1280px) { .caso .wrap > .caso__split { flex: 1 1 auto; align-items: center; align-content: center; } }
+/* celular: la tira de videos deja lugar a la barra fija de abajo */
+@media (max-width: 639px) { .reel__nav { margin-bottom: var(--bar, 64px); } }
+
